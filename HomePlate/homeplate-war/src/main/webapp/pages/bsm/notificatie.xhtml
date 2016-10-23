@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <h:panelGroup rendered="#{homepageController.notificatieTonen and not empty homepageController.systeemMededelingHomepage}">
+        <center>
+            <table id="notificatieTable" width="80%">
+                <tr>
+                    <td>
+                        <div class="notificatie" id="notificationBar">
+                            <div class="closeNotificatie">
+                                <h:form id="notificatieForm">
+                                    <h:commandLink action="#{homepageController.closeNotificatie}">
+                                        <h:graphicImage title="Sluit notificatie gedurende deze sessie" library="images" name="closebar.png"/>
+                                    </h:commandLink>
+                                </h:form>
+                            </div>
+                            <div class="content">
+                                <table>
+                                    <ui:repeat var="notificatie" value="#{homepageController.systeemMededelingHomepage}">
+                                        <tr>
+                                            <td valign="top"><h:graphicImage id="notificatiebullet" style="margin-top: 5px; margin-left: 10px; margin-right: 10px;" library="bsm/img" name="infoicon1.png"/></td>
+                                            <td valign="top"><h:outputText value="#{notificatie.mededeling}"/>
+                                                <br/><br/>
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
+                                </table>
+                            </div>
+                            <div style="font-size: x-small; text-align: right">
+                                <info:taalkeuze nl="Verdwijnt automatisch na 10 seconden, of klik op X." en="Disappears automatically after 10 seconds, or click on X." />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </h:panelGroup>
+
+ </ui:composition>

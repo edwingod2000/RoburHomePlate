@@ -1,0 +1,80 @@
+<!DOCTYPE table SYSTEM "/resources/entities.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:info="http://java.sun.com/jsf/composite/components/info"
+      >
+
+    <!-- INTERFACE -->
+    <composite:interface>
+        <composite:attribute name="widgetVar" type="java.lang.String" required="true" />
+        <composite:attribute name="height" type="java.lang.String" default="600" required="false" />
+        <composite:attribute name="width" type="java.lang.String" default="600" required="false" />
+        <composite:attribute name="value" type="java.lang.String" required="true" />
+    </composite:interface>
+
+    <!-- IMPLEMENTATION -->
+    <composite:implementation>
+        <script type="text/javascript">
+            var current#{cc.attrs.widgetVar};
+            function show#{cc.attrs.widgetVar}Dialog(imageButton) {
+                current#{cc.attrs.widgetVar} = imageButton;
+                #{cc.attrs.widgetVar}addImageDialog.show();  
+            }
+            function addImageToEditor(image) {
+                var newImage = "&lt;img style=\'max-width:450px;\' src=\'http://localhost:8080/HomePlate-war/ImageServlet?name=";
+                newImage = newImage + image + "\'/&gt;";
+
+                #{cc.attrs.widgetVar}.editor.focus();
+                setTimeout(function() {
+                    #{cc.attrs.widgetVar}.editor.execCommand('inserthtml', newImage, false);
+                }, 0);
+                #{cc.attrs.widgetVar}addImageDialog.hide();
+            }
+        </script>
+        
+        <h:graphicImage alt="Insert Image / Toevoegen plaatje" title="Insert Image / Toevoegen plaatje" styleClass="imageIcon" library="images" name="addicon2.png" width="20" onclick="show#{cc.attrs.widgetVar}Dialog(this)"/>
+        <p:dialog id="#{cc.attrs.widgetVar}addImageDialog" 
+                  visible="false" 
+                  header="Insert Image / Toevoegen plaatje" 
+                  modal="true" 
+                  widgetVar="#{cc.attrs.widgetVar}addImageDialog" 
+                  styleClass="chooseImageDialog" 
+                  width="900" 
+                  height="750">
+            <p:panel header="Kies plaatje">
+                <h:outputText value="Kies categorie:" />
+                <p:selectOneMenu label="Kies categorie:" value="#{imageController.dceVolgnr}">
+                    <p:ajax update="images" listener="#{imageController.updateImages}" />
+                    <f:selectItems itemLabel="#{documentType.omschrijving}" itemValue="#{documentType.dceVolgnr}" var="documentType" value="#{imageController.documentTypes}"/>
+                </p:selectOneMenu>
+                <br/><br/>
+                <p:dataTable id="images" var="image" value="#{imageController.documenten}" paginator="true" rows="10">   
+                    <p:column>
+                        <a href="javascript:addImageToEditor('#{image.name}')">Select</a>
+                    </p:column>
+                    <p:column>
+                        <h:graphicImage value="/ImageServlet?name=#{image.name}&amp;thumbnail=TRUE" width="50"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{image.displayName}"/>                    
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+            <p:ajaxStatus style="width:16px;height:16px;position: absolute;left: 50%; top: 50%;">  
+                <f:facet name="start">  
+                    <p:graphicImage library="images" name="ajax_loader_large.gif"/>
+                </f:facet>  
+
+                <f:facet name="complete">  
+                    <h:outputText value="" />  
+                </f:facet>  
+            </p:ajaxStatus> 
+        </p:dialog>
+        <p:editor width="#{cc.attrs.width}" widgetVar="#{cc.attrs.widgetVar}" height="600" value="#{infoController.infoItem.bericht}" />
+        <!--<p:button onclick="#{cc.attrs.widgetVar}.instance.insertText('myText');"/>-->
+    </composite:implementation>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <div class="row clearfix footer">
+         <div class="col-xs-12 col-md-3 column">
+             <ui:include src="/pages/socialmedia.xhtml"/>
+         </div>
+         <div class="col-xs-12 col-md-5 column">
+             <h2>
+                 <info:taalkeuze nl="Informatie" en="Information"/>
+             </h2>
+             <p>
+                 <div id="infositemap">
+                    <h:outputText value="#{navigatieController.menuV2}" escape="false"/>
+                 </div>
+             </p>
+         </div>
+         <div class="col-xs-12 col-md-3 column">
+             <h2>
+                 <info:taalkeuze nl="Adres sportpark" en="Address sportpark"/>
+             </h2>
+             <p>
+                 Sportpark Orderbos 41<br/>
+                 7313 HN  Apeldoorn<br/>
+                 Tel.: 055 - 355 34 74
+                 
+             </p>
+         </div>
+         <div class="col-xs-12 col-md-1 column">
+             <p>
+                <div class="naarboven"><a href="#" class="naarbovenlink"><span class="glyphicon glyphicon-chevron-up naarbovenlink"></span></a></div>
+             </p>
+         </div>
+     </div>
+    
+    <h:outputScript library="js" name="footer.js" target="body"/>    
+</ui:composition>

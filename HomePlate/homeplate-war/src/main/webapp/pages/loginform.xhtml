@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <div id="loginWidget">
+        <h2>
+            <info:taalkeuze nl="Leden Login" en="Member Login"/>
+        </h2>
+        <p>
+            <div style="text-align: left">
+                <b><info:taalkeuze en="Username *" nl="Gebruikersnaam *" /></b><br/>
+                <h:inputText size="20" maxlength="50" value="#{securityController.gebruikersnaam}" required="false" requiredMessage="#{homePlateSessionTO.dutch ? 'Gebruikersnaam is verplicht.' : 'Username is required.'}" /><br/>
+                <b><info:taalkeuze en="Password *" nl="Wachtwoord *" /></b><br/>
+                <h:inputSecret size="20" maxlength="50" value="#{securityController.wachtwoord}"  required="false" requiredMessage="#{homePlateSessionTO.dutch ? 'Wachtwoord is verplicht.' : 'Password is required.'}" /><br/><br/>
+                <h:commandButton styleClass="btn btn-primary" value="#{homePlateSessionTO.dutch ? 'Inloggen' : 'Log in'}" action="#{securityController.executeLogin}">
+                </h:commandButton>
+                <br/>
+            </div>
+            <br/>
+            <h:link outcome="/pages/wachtwoordvergeten.xhtml">
+                <info:taalkeuze nl="Wachtwoord vergeten?" en="Forgot password?"/>
+            </h:link>
+            <br/>
+            <h:link outcome="/pages/geenaccount.xhtml">
+                <info:taalkeuze nl="Geen account?" en="No account?"/>
+            </h:link>
+            <br/>
+            <a href="mailto:webmaster@robur58.com?subject=Problemen%20inloggen/Aanmelden">
+                <info:taalkeuze nl="Problemen met Leden Login?" en="Problems with Member Log in?"/>
+            </a>
+        </p>
+    </div>
+
+    <h:outputScript library="js" name="loginform.js"/> 
+</ui:composition>

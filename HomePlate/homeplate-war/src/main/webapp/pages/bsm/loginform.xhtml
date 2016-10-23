@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <div id="loginWidget" class="info">
+        <h:form id="loginForm">
+            <div class="title">
+                <info:taalkeuze nl="Leden Login" en="Member Login"/>
+            </div>
+            <div class="content">
+                <div style="text-align: left">
+                    <b><info:taalkeuze en="Username *" nl="Gebruikersnaam *" /></b><br/>
+                    <h:inputText size="20" maxlength="50" value="#{securityController.gebruikersnaam}" required="false" requiredMessage="Gebruikersnaam is verplicht." /><br/>
+                    <b><info:taalkeuze en="Password *" nl="Wachtwoord *" /></b><br/>
+                    <h:inputSecret size="20" maxlength="50" value="#{securityController.wachtwoord}"  required="false" requiredMessage="Wachtwoord is verplicht." /><br/><br/>
+                    <h:commandButton styleClass="loginbutton" value="Login" action="#{securityController.executeLogin}">
+                    </h:commandButton>
+                    <br/>
+                </div>
+                <br/>
+                <h:link outcome="/pages/bsm/wachtwoordvergeten.xhtml">
+                    <info:taalkeuze nl="Wachtwoord vergeten?" en="Forgot password?"/>
+                </h:link>
+                <br/>
+                <h:link outcome="/pages/bsm/geenaccount.xhtml">
+                    <info:taalkeuze nl="Geen account?" en="No account?"/>
+                </h:link>
+                <br/>
+                <a href="mailto:webmaster@robur58.com?subject=Problemen%20inloggen/Aanmelden">
+                    <info:taalkeuze nl="Problemen met Leden Login?" en="Problems with Member Login?"/>
+                </a>
+            </div>
+        </h:form>
+    </div>
+
+</ui:composition>

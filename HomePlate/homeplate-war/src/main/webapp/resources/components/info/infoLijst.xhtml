@@ -1,0 +1,75 @@
+<!DOCTYPE table SYSTEM "/resources/entities.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"      
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:info="http://java.sun.com/jsf/composite/components/info"
+      >
+
+    <!-- INTERFACE -->
+    <composite:interface>
+        <composite:attribute name="infoLijstObject" type="com.robur58.web.view.InfoLijst" required="true" />
+        <composite:attribute name="editModeAvailable" type="java.lang.Boolean" default="false" required="false" />
+    </composite:interface>
+
+    <!-- IMPLEMENTATION -->
+    <composite:implementation>
+        <ui:repeat var="item" value="#{cc.attrs.infoLijstObject.infoLijst}">
+            <h:panelGroup rendered="#{(homePlateSessionTO.dutch and not empty item.titel) or (not homePlateSessionTO.dutch and not empty item.titelEn)}">
+            <a name="INFO#{item.volgnr}"></a>            
+            <div id="infoWidget#{item.volgnr}" class="info">
+                <h:panelGroup rendered="#{cc.attrs.editModeAvailable}">
+                    <h:link outcome="editinfo" value="Edit">
+                        <f:param name="infoitem" value="#{item.volgnr}"/>
+                    </h:link>
+                    <button class="deletebutton" id="#{item.volgnr}">Delete</button>
+                    <h:commandLink style="display:none" class="confirm#{item.volgnr}" action="#{infoController.deleteInfo(item.volgnr)}">
+                    </h:commandLink>
+                </h:panelGroup>
+                <script>
+                    $(document).ready(function(){
+                        $("##{item.volgnr}").click(function() {
+                            var idWaarde = $(this).attr("id");
+                            alert(idWaarde);
+                            if (confirm("Weet u het zeker?")) {
+                                $(".confirm"+idWaarde).click();
+                            }
+                        });
+                    }) ;
+                </script>
+                <div class="title">
+                    <label><info:taalkeuze nl="#{item.titel}" en="#{item.titelEn}"/></label>
+                </div>
+                <div class="content">
+                    <label><info:taalkeuze nl="#{item.bericht}" en="#{item.berichtEn}" escape="false"/></label>
+                    <h:panelGroup rendered="#{(not empty item.pgaVolgnr and homePlateSessionTO.dutch)}">
+                        <h:link outcome="/pages/bsm/extraInfopagina" value="Lees verder ...">
+                            <f:param name="volgnr" value="#{item.pgaVolgnr}"/>
+                            <f:param name="info" value="#{item.volgnr}"/>
+                        </h:link>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{(not empty item.pgaEnVolgnr and not homePlateSessionTO.dutch)}">
+                        <h:link outcome="/pages/bsm/extraInfopagina" value="Read more ...">
+                            <f:param name="volgnr" value="#{item.pgaEnVolgnr}"/>
+                            <f:param name="info" value="#{item.volgnr}"/>
+                        </h:link>
+                    </h:panelGroup>
+                </div>
+            </div>
+            </h:panelGroup>
+        </ui:repeat>
+        <h:panelGroup rendered="#{(homepageController.homePlateSessionTO.dutch and cc.attrs.infoLijstObject.NLEmpty) or (not homepageController.homePlateSessionTO.dutch and cc.attrs.infoLijstObject.ENEmpty)}">
+            <br/>
+            <div class="info">
+                <div class="title">
+                    Sorry!
+                </div>
+                <div class="content">
+                    <info:taalkeuze nl="Geen informatie gevonden." en="No information found." />
+                </div>
+            </div>
+        </h:panelGroup>
+    </composite:implementation>
+</html>

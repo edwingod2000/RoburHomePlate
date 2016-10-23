@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/bsm/bsmmain.xhtml"
+                >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{navigatieController.setCurrentTabblad(2)}" />
+        <f:event type="preRenderView" listener="#{teamsController.init}" />
+        <f:event type="preRenderView" listener="#{teamsController.begin}" />
+        <f:event type="preRenderView" listener="#{teamsController.verwijderContextItems}" />
+    </f:metadata>
+
+    <ui:define name="content">
+        <!--h:panelGroup rendered="#{not homePlateSessionTO.showContextTeamList}">
+            <table class="teamlijst"><tr><td>&nbsp;</td><td></td></tr></table>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{homePlateSessionTO.showContextTeamList}" -->
+        <h:form>
+            <ui:repeat var="typeTeam" value="#{teamsController.typeTeams}">
+                <div class="info">
+                    <div class="title">
+                        <info:taalkeuze nl="#{typeTeam.omschrijving} teams" en="#{typeTeam.omschrijvingEn} teams"/>
+                    </div>
+                    <div class="content">
+                        <ui:repeat var="team" value="#{teamsController.ophalenTeamsPerSoort(typeTeam.code)}">
+                            <h:link outcome="/pages/bsm/team.xhtml?team=#{team.volgnr}">
+                                <h:outputText value="#{team.naam}"/>
+                            </h:link>
+                            <br/>
+                        </ui:repeat>
+                    </div>
+                </div>
+            </ui:repeat>
+        </h:form>
+        <!--/h:panelGroup -->
+    </ui:define>
+</ui:composition>

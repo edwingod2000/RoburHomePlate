@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:gui="http://java.sun.com/jsf/composite/components/gui"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/bsm/bsmgebruiker.xhtml"
+      >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{navigatieController.setCurrentBeheerTabblad(2)}" />
+    </f:metadata>
+    
+    <ui:define name="beheercontent">
+        <h:panelGroup rendered="#{not empty securityController.gebruiker}">
+            <p:messages showDetail="false"/> 
+            <div class="info">
+                <div class="title"><info:taalkeuze nl="Gebruiker gegevens website" en="User settings"/></div>
+                <div class="content">
+                    <h:form id="gebruikerForm">
+                        <div class="formulier">
+                            <dl>
+                                <dt><info:taalkeuze nl="Voornaam *" en="Firstname *"/></dt>
+                                <dd>
+                                    <h:inputText value="#{securityController.gebruiker.voornaam}" required="true" requiredMessage="Voornaam is verplicht." disabled="#{!gebruikersController.gebruikerWijzigen}"/>
+                                </dd>
+
+                                <dt><info:taalkeuze nl="Tussenvoegsel" en="Middlename"/></dt>
+                                <dd>
+                                    <h:inputText value="#{securityController.gebruiker.tussenvoegsel}" disabled="#{!gebruikersController.gebruikerWijzigen}"/>
+                                </dd>
+
+                                <dt><info:taalkeuze nl="Achternaam *" en="Lastname *"/></dt>
+                                <dd>
+                                    <h:inputText value="#{securityController.gebruiker.achternaam}" required="true" requiredMessage="Achternaam is verplicht." disabled="#{!gebruikersController.gebruikerWijzigen}"/>
+                                </dd>
+
+                                <dt>E-Mail *</dt>
+                                <dd>
+                                    <h:inputText value="#{securityController.gebruiker.email}" required="true" requiredMessage="E-Mail is verplicht." disabled="#{!gebruikersController.gebruikerWijzigen}"/>
+                                </dd>
+
+                                <dt>Telefoonnummer</dt>
+                                <dd>
+                                    <h:inputText value="#{securityController.gebruiker.telefoonNummer}" disabled="#{!gebruikersController.gebruikerWijzigen}"/>
+                                </dd>
+
+                                <dt>Geboortedatum</dt>
+                                <dd>
+                                    <h:inputText id="geboortedatum" value="#{securityController.gebruiker.geboortedatum}" disabled="#{!gebruikersController.gebruikerWijzigen}" converterMessage="Geboortedatum: geen geldige datum (DD-MM-JJJJ)">
+                                        <f:convertDateTime pattern="dd-MM-yyyy" timeZone="#{homePlateSessionTO.timezone}" />
+                                    </h:inputText>
+                                </dd>
+                                
+                                <dt>Lidnummer</dt>
+                                <dd>
+                                    <h:inputText value="#{securityController.gebruiker.lidNummer}" disabled="#{!gebruikersController.gebruikerWijzigen}"/>
+                                </dd>
+
+                            </dl>
+
+                            <div class="gebruikervoorkeuren">Voorkeuren</div>
+                            <dl>
+                                <dt>Strike / Nieuwsbrief via post ontvangen</dt>
+                                <dd>
+                                    <h:selectOneMenu value="#{securityController.gebruiker.papierenNieuws}" disabled="#{!gebruikersController.gebruikerWijzigen}">
+                                        <f:selectItem itemValue="J" itemLabel="Ja" />
+                                        <f:selectItem itemValue="N" itemLabel="Nee" />
+                                    </h:selectOneMenu>
+                                    (Default is Nee, dan ontvangt u hem via e-mail)
+                                </dd>                                
+                            </dl>
+                            <br/>
+                        </div>
+                        <h:commandLink action="#{gebruikersController.executeAnnuleren}" value="Annuleren" immediate="true" rendered="#{gebruikersController.gebruikerWijzigen}"/>&nbsp;
+                        <h:commandButton styleClass="homeplateButton" action="#{gebruikersController.wijzigOfBewaar()}" value="#{gebruikersController.wijzigOfBewaarLabel}" />
+                    </h:form>
+                </div>
+            </div>
+            <div class="info">
+                <div class="title"><info:taalkeuze nl="Acties" en="Deals"/></div>
+                <div class="content">
+                    <h:form id="actionForm">
+                        <div class="formulier">
+                            <div class="gebruikervoorkeuren">Pellikaan</div>
+                            <br/>
+                            <div class="uitleg">
+We hebben als Robur een regeling kunnen treffen bij de Pellikaan om korting te krijgen. 
+<br/>
+De staffelkorting die de Pellikaan biedt werkt als volgt:
+<pre>
+ 5-10 lidmaatschappen          7% korting
+10-20 lidmaatschappen         10% korting
+20-50 lidmaatschappen         12% korting
+50 of meer lidmaatschappen    15% korting
+</pre>
+Dit geldt op alle abonnementsvormen, zowel enkel als gezin. Ook de periode 3, 6 of 12 maanden is hiervoor niet van belang. De huidige Pellikaan leden zullen eerst
+hun abonnement moeten uitzitten. Daarna kan de Pellikaan de contracten veranderen naar een lidmaatschap, waarbij de korting kan worden toegepast. Dit geldt ook
+voor het moment wanneer het kortingspercentage wijzigt. De huidige Pellikaan leden zullen dan eerst hun contractperiode moeten uitzitten en daarna kan het 
+gewijzigde percentage toegepast worden. Dit levert dus ook een voordeel op voor de leden, wanneer het kortingspercentage bijvoorbeeld verminderd. Zij zijn dan gedurende
+de afgesproken contractsperiode verzekerd van de korting die bij inschrijving is afgesproken.
+
+We moeten van te voren inventariseren hoeveel leden al lid zijn bij de Pellikaan om te kijken wat het huidige kortingspercentage zou kunnen zijn.
+                            </div>
+                            <dl>
+                                <dt>Ben je (al) lid van de Pellikaan?</dt>
+                                <dd>
+                                    <h:selectOneMenu value="#{securityController.gebruiker.pellikaanAlLid}" disabled="#{!gebruikersController.actiesWijzigen}">
+                                        <f:selectItem itemValue="" itemLabel="- Maak een keuze -" />
+                                        <f:selectItem itemValue="J" itemLabel="Ja" />
+                                        <f:selectItem itemValue="N" itemLabel="Nee" />
+                                    </h:selectOneMenu>
+                                </dd>                                
+                            </dl>
+                            <br/>
+                            <dl>
+                                <dt>Wil je meedoen met de actie van de Pellikaan?</dt>
+                                <dd>
+                                    <h:selectOneMenu value="#{securityController.gebruiker.pellikaanMeedoen}" disabled="#{!gebruikersController.actiesWijzigen}">
+                                        <f:selectItem itemValue="" itemLabel="- Maak een keuze -" />
+                                        <f:selectItem itemValue="J" itemLabel="Ja" />
+                                        <f:selectItem itemValue="N" itemLabel="Nee" />
+                                    </h:selectOneMenu>
+                                </dd>                                
+                            </dl>
+                        </div>
+                        <br/>
+                        <h:commandLink action="#{gebruikersController.executeAnnuleren}" value="Annuleren" immediate="true" rendered="#{gebruikersController.actiesWijzigen}"/>&nbsp;
+                        <h:commandButton styleClass="homeplateButton" action="#{gebruikersController.wijzigOfBewaarActies()}" value="#{gebruikersController.wijzigOfBewaarLabel}" />
+                    </h:form>
+                </div>
+            </div>
+            <div class="info">
+                <div class="title"><info:taalkeuze nl="Wijzig wachtwoord" en="Change password"/></div>
+                <div class="content">
+                    <h:form id="passwordForm">
+                        <div class="formulier">
+                            <h:panelGroup rendered="#{gebruikersController.wachtwoordWijzigen}">
+                                <dl>
+                                    <dt>Oude Wachtwoord *</dt>
+                                    <dd>  
+                                        <h:inputSecret value="#{gebruikersController.wachtwoord}" required="true" requiredMessage="Oude wachtwoord is verplicht."/>
+                                    </dd>
+                                    <dt>Nieuwe Wachtwoord *</dt>
+                                    <dd>  
+                                        <h:inputSecret value="#{gebruikersController.wachtwoord1}" required="true" requiredMessage="Nieuwe wachtwoord is verplicht."/>
+                                    </dd>
+                                    <dt>Nieuwe Wachtwoord verificatie *</dt>
+                                    <dd>  
+                                        <h:inputSecret value="#{gebruikersController.wachtwoord2}" required="true" requiredMessage="Nieuwe wachtwoord verificatie is verplicht."/>
+                                    </dd>
+                                </dl>
+                            </h:panelGroup>
+                        </div>
+                        <br/>
+                        <h:commandLink action="#{gebruikersController.executeAnnuleren}" value="Annuleren" immediate="true" rendered="#{gebruikersController.wachtwoordWijzigen}"/>&nbsp;
+                        <h:commandButton styleClass="homeplateButton" action="#{gebruikersController.bewaarWachtwoord()}" value="Bewaren" rendered="#{gebruikersController.wachtwoordWijzigen}" type="submit"/>
+                        <h:commandLink action="#{gebruikersController.wijzigWachtwoord}" immediate="true" rendered="#{!gebruikersController.wachtwoordWijzigen}"><info:taalkeuze nl="Wijzig wachtwoord." en="Change password."/></h:commandLink>
+                    </h:form>
+                </div>
+            </div>
+            <div class="info">
+                <div class="title"><info:taalkeuze nl="Lid gegevens ledenadministratie" en="Member info Memberadministration"/></div>
+                <div class="content">
+                    <info:taalkeuze nl="Later zal een koppeling worden gemaakt met de ledenadministratie." en="Later a connection will be made with the Memberadministration."/>
+                </div>
+            </div>
+
+            <br/><br/>
+        </h:panelGroup>
+    </ui:define>
+
+</ui:composition>

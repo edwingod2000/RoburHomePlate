@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+
+    <h:head>
+        <title>Robur '58 Homeplate</title>
+        <meta http-equiv="refresh" content="#{session.maxInactiveInterval};url=#{facesContext.externalContext.request.contextPath}/pages/homeplate.faces?reason=expired" />
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="Honkbal en softbal vereniging Robur '58"/>
+        <meta name="author" content="Edwin Godefrooij"/>
+        
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="bootstrap-theme.min.css"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="carousel.css"/>
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="js/html5shiv.js"></script>
+        <![endif]-->
+
+        <!-- Fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png"/>
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png"/>
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png"/>
+        <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png"/>
+        <link rel="shortcut icon" href="/img/favicon.png"/>
+
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+
+        <!--<h:outputScript library="js" name="jquery.min.js" target="head"/>-->
+        <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="scripts.js"/>
+    </h:head>
+
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-lg-2">
+                    <h:link outcome="#{navigatieController.executeNavigation(1)}">
+                        <h:graphicImage library="img" name="rob_logo.gif" width="140" height="140"/>
+                    </h:link>
+                </div>
+                <div class="col-md-7 page-header websitetitel">
+                    <h1 class="text-left">
+                        Honk- en Softbal vereniging Robur '58
+                    </h1>
+                </div>
+                <div class="col-md-3">
+                   <ui:include src="/pages/top.xhtml"/>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <ui:include src="/pages/carousel.xhtml"/>
+            </div>
+        </div>
+        <h:panelGroup id="bodyrow" styleClass="container" layout="block">
+            <h:panelGroup id="menurow" styleClass="row clearfix" layout="block">
+                <div class="col-md-12 column">
+                    <ui:include src="/pages/menu.xhtml"/>
+                </div>
+            </h:panelGroup>
+            <div class="row">&nbsp;</div>
+            <div class="row clearfix">
+                <div class="col-md-1 col-lg-1 column">
+                    
+                </div>
+                <div class="col-md-10 col-lg-10 column">
+                    <h:panelGroup id="contentrow" styleClass="content" layout="block">
+                        <ui:insert name="content"/>
+                    </h:panelGroup>
+                </div>
+                <div class="visible-lg col-md-1 col-lg-1 column">
+                    
+                </div>
+            </div>
+        </h:panelGroup>
+        <ui:include src="/pages/footer.xhtml"/>
+        <!--<h:outputScript library="js" name="jquery.min.js" target="body"/>-->
+
+    </h:body>
+
+</html>

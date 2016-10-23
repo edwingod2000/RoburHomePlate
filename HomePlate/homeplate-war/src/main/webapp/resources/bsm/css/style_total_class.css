@@ -1,0 +1,188 @@
+/***** Classes *****/
+.box1 {
+  border-width: thin;
+  border-color: #99FF99 #003300 #003300 #99FF99;
+  border-style: double;
+}
+.boxGrey {
+	BORDER-RIGHT: #194e97 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #194e97 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: #194e97 1px solid; WIDTH: 100%; PADDING-TOP: 0px; BORDER-BOTTOM: #194e97 1px solid
+}
+.boxGrey H2 {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; FONT-SIZE: 12px; PADDING-BOTTOM: 3px; MARGIN: 0px; TEXT-TRANSFORM: lowercase; COLOR: #ffffff; PADDING-TOP: 3px; BACKGROUND-COLOR: #194e97; TEXT-ALIGN: left
+}
+.boxGrey H2:first-letter {
+	FONT-SIZE: 12px; TEXT-TRANSFORM: uppercase; COLOR: #ffffff
+}
+.boxGrey H3 {
+	FONT-WEIGHT: normal; FONT-SIZE: 11px; BACKGROUND-COLOR: #f4f4f4
+}
+.boxGrey H4 {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; FONT-SIZE: 11px; PADDING-BOTTOM: 3px; COLOR: #666666; PADDING-TOP: 3px; BACKGROUND-COLOR: #cccccc
+}
+.even {
+	BACKGROUND-COLOR: #ffffff
+}
+.footer {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 22px;
+  color: #333333;
+  background-color: #CCFF99;
+}
+.header {
+  font-size: 20px;
+  background-color: #CC0000;
+  color: #FFFFFF;
+}
+.headerschaduw {
+  background:#FFFFFF url('../../resources/bsm/img/schaduw.gif') top left repeat-x
+}
+.highlights A {
+	FONT-SIZE: 11px; COLOR: #CC0000; LINE-HEIGHT: 1.4em
+}
+.highlights A:link {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.highlights A:hover {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.highlights A:active {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none;
+}
+.highlights A:visited {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.headerlink A {
+	FONT-SIZE: 11px; COLOR: #000000; LINE-HEIGHT: 1.4em
+}
+.headerlink A:link {
+	FONT-WEIGHT: 900; COLOR: #FFFFFF; TEXT-DECORATION: none
+}
+.headerlink A:hover {
+	FONT-WEIGHT: 900; COLOR: #FFFFFF; TEXT-DECORATION: none
+}
+.headerlink A:active {
+	FONT-WEIGHT: 900; COLOR: #FFFFFF; TEXT-DECORATION: none;
+}
+.headerlink A:visited {
+	FONT-WEIGHT: 900; COLOR: #FFFFFF; TEXT-DECORATION: none
+}
+.teamlijst A {
+	FONT-SIZE: 11px; COLOR: #CC0000; LINE-HEIGHT: 1.4em
+}
+.teamlijst A:link {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.teamlijst A:hover {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.teamlijst A:active {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none;
+}
+.teamlijst A:visited {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.leesverder A {
+	FONT-SIZE: 11px; COLOR: #CC0000; LINE-HEIGHT: 1.4em
+}
+.leesverder A:link {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.leesverder A:hover {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.leesverder A:active {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none;
+}
+.leesverder A:visited {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.meerinfo A {
+	FONT-SIZE: 11px; COLOR: #CC0000; LINE-HEIGHT: 1.4em
+}
+.meerinfo A:link {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.meerinfo A:hover {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.meerinfo A:active {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none;
+}
+.meerinfo A:visited {
+	FONT-WEIGHT: 900; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.homeplateButton {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 100%; MARGIN: 1px; BORDER-LEFT: #000000 1px solid; CURSOR: hand; COLOR: #ffffff; BORDER-BOTTOM: #000000 1px solid; BACKGROUND-COLOR: #CC0000
+}
+.homePlateBodySnow {
+  BACKGROUND: #9FA9B3 url(../../resources/bsm/img/snow.gif) 0 0;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+.homePlateBody1 {
+  BACKGROUND: #9FA9B3 url(../../resources/bsm/img/page_background.jpg) 0 0 repeat-x;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+.homePlateBody {
+  BACKGROUND: #9FA9B3 url(../../resources/bsm/img/gras.jpg) 0 0 fixed;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+.label {
+  font-weight: bold;
+}
+.input {
+	background-color: white;
+	border-color: black;
+	border-style: solid 1px;
+	
+}
+.legal {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  color: #333333;
+}
+.normal {
+  border: 1px solid #CC0000;
+  background-color: #FFFFF;  
+}
+.odd {
+	BACKGROUND-COLOR: #fafafa;
+}
+.pageLayoutTable {
+  height:80%; 
+  border: thin solid #CC0000;
+  background-color: #FFFFF;
+  align: center;
+  background-position: center;
+  width: 743pt;
+  /* width: 75%; */
+}
+.spacer {
+	CLEAR: both; FONT-SIZE: 0px
+}
+.title {
+  font-size: 18px;
+  line-height: 20px;
+  background-color: #99CC00; color: #003333;
+}
+.titlebar {
+  font-size: 9px;
+  color: #FFFFFF;
+  background-color: #336699;
+}
+.gebruikersLogin {
+  font-size: 9px;
+  color: #FFFFFF;
+  width: 400px;
+  height: 20px;
+  background-color: #CC0000;
+}
+.imageIcon {
+    float: right;
+    position: relative;
+    right: 87px;
+    top: 3px;
+}

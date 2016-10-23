@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+    <h:form id="mainmenu" prependId="false">
+       <nav class="navbar navbar-default" role="navigation">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+        
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="#{navigatieController.getTabbladClass(1)}">
+                    <h:link outcome="#{navigatieController.executeNavigation(1)}">
+                        <span><info:taalkeuze nl="HomePlate" en="HomePlate"/></span>
+                        <f:ajax render=":bodyrow"/>
+                    </h:link>
+                </li>
+                <li class="dropdown #{navigatieController.getTabbladClass(20)}">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><info:taalkeuze nl="Informatie" en="Information"/> <b class="caret"></b></a>
+                    <div class="dropdown-menu dropdown-menu-full">
+                        <div class="row">
+                            <ui:include src="/pages/informatiesubmenu.xhtml"/>
+                        </div>
+                    </div>
+                </li>
+                <li class="#{navigatieController.getTabbladClass(2)}">
+                    <h:link outcome="#{navigatieController.executeNavigation(2)}">
+                        <span>Teams</span>
+                        <f:ajax render=":bodyrow"/>
+                    </h:link>
+                </li>
+                <li class="#{navigatieController.getTabbladClass(3)}">
+                    <h:link outcome="#{navigatieController.executeNavigation(3)}"><span><info:taalkeuze nl="Wedstrijden" en="Games"/></span></h:link>
+                </li>
+                <li class="#{navigatieController.getTabbladClass(4)}">
+                    <h:link outcome="#{navigatieController.executeNavigation(4)}"><span><info:taalkeuze nl="Kalender" en="Calendar"/></span></h:link>
+                </li>
+                <li class="#{navigatieController.getTabbladClass(6)}">
+                    <h:link outcome="#{navigatieController.executeNavigation(6)}"><span><info:taalkeuze nl="Lid worden" en="Become member"/></span></h:link>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <h:panelGroup rendered="#{not empty securityController.gebruiker}">
+                    <li class="dropdown #{navigatieController.getTabbladClass(10)}">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><info:taalkeuze nl="Leden" en="Members"/><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <h:link outcome="#{navigatieController.executeNavigation(7)}">
+                                    <info:taalkeuze nl="Documenten" en="Documents"/>
+                                </h:link>
+                            </li>
+                        </ul>
+                    </li>
+                </h:panelGroup>
+                <li class="dropdown #{navigatieController.getTabbladClass(9)}">
+                   <h:panelGroup rendered="#{not empty securityController.gebruiker}">
+                       <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                           <span class="glyphicon glyphicon-user"></span><h:outputText styleClass="gebruiker" value="#{securityController.gebruiker.displayNaam}"/>
+                           <b class="caret"></b>
+                       </a>
+                       <ul class="dropdown-menu">
+                           <li>
+                               <h:link outcome="/pages/gebruikerinstellingen.xhtml">
+                                   <span class="glyphicon glyphicon-cog instellingen"></span>
+                                   <info:taalkeuze nl="Instellingen" en="Settings"/>
+                               </h:link>
+                           </li>
+                           <li class="divider"></li>
+                           <li>
+                               <h:commandLink action="#{securityController.executeUitloggen}">
+                                   <span class="glyphicon glyphicon-log-out uitloggen"></span>
+                                   <info:taalkeuze nl="Uitloggen" en="Log off" />
+                               </h:commandLink>
+                           </li>
+                       </ul>
+                   </h:panelGroup>
+                   <h:panelGroup rendered="#{empty securityController.gebruiker}">
+                       <a href="#" data-toggle="dropdown" class="dropdown-toggle navbar-right">
+                           <info:taalkeuze nl="Inloggen" en="Log in"/>
+                           <b class="caret"></b>
+                       </a>
+                       <div class="dropdown-menu inlogform">
+                           <ui:include src="/pages/loginform.xhtml"/>
+                       </div>
+                   </h:panelGroup>
+                </li>                
+            </ul>
+  
+        </div>
+          </div>
+      </nav>
+    </h:form>
+</ui:composition>

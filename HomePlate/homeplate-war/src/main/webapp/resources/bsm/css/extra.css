@@ -1,0 +1,280 @@
+.info {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+    background-color: #f3fcff;
+    border: 1px solid #CC0000;
+    padding: 5px 5px;
+    margin-bottom: 10px;
+
+    /* Gradient in browsers die het ondersteunen. */
+    background: -webkit-gradient(linear, center top, center bottom, from(#ffffff), to(#f3fcff));
+    background-image: -moz-linear-gradient(top, white, #f3fcff 18px);
+    /*background-image: -webkit-gradient(linear,0 0 ,0 18, from(#ffffff), to(#f3fcff)); */
+
+}
+
+.info .title {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+    background-color: #CC0000;
+    border: 1px solid #CC0000;
+    padding: 5px 5px;
+    margin-bottom: 5px;
+    color: white;
+    
+    /* Gradient in browsers die het ondersteunen. */
+    background: -webkit-gradient(linear, center top, center bottom, from(#ffffff), to(#f3fcff));
+    background-image: -moz-linear-gradient(top, white, #CC0000 18px);
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#CC0000));
+    /*background-image: -webkit-gradient(linear,0 0 ,0 18, from(#ffffff), to(#f3fcff)); */
+
+}
+.infoside {
+    width: 25%;
+}
+
+.infocenter {
+    width: 90%;
+    margin-left: auto ;
+    margin-right: auto ;
+    position: relative;
+}
+
+div.info a.toggellink {
+    overflow: visible;
+    float: right;
+    margin-top: 0px;
+}
+
+.info .content { 
+    overflow: hidden 
+}
+
+.editmode {
+    margin-left: 20px;
+}
+
+.editToolbar {
+    position: relative;
+    float: right;
+}
+
+.editToolbar .edit {
+    background-image: url(../../resources/bsm/img/info_edit.gif);
+    width: 30px;
+    height: 30px;
+}
+
+.editToolbar .delete {
+    background-image: url(../../resources/bsm/img/info_delete.gif);
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: -30px;
+    right: 30px;
+}
+
+.wedstrijddatum {
+    font-weight: bold;
+    font-size: large;
+}
+
+.wedstrijdsoort {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.wedstrijdactueel {
+    margin: 20px, 20px, 20px, 20px;
+    width: 100%;
+}
+
+/* Pas bij document.ready() bepalen of toggelbaar getoond moet worden. */
+.toggelbaar {
+    display: none;
+}
+
+/* Toggle botton (+/-) */
+a.toggellink {
+    float: right;
+    font-size: 0;
+    text-indent: -100px;
+    overflow: hidden;
+    display: block;
+    background-color: #777;
+    background-color: rgba(0, 0, 0, 0.4);
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+    margin-top: -28px;
+    margin-right: 10px;
+}
+
+a.toggellink:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+}
+
+.collapsed {
+    background-image: url(../../resources/bsm/img/uitklappen-18.png);
+    background-position: 0 0;
+    height: 18px;
+    width: 18px;
+}
+
+.expanded {
+    background-image: url(../../resources/bsm/img/inklappen-18.png);
+    background-position: 0 0;
+    height: 18px;
+    width: 18px;
+}
+
+.loginbutton {
+    background-color: #CC0000;
+    color: #FFFFFF;
+    font-family: verdana;
+    font-size: 11px;
+}
+
+.infotitle {
+    font-size: 14px;
+    font-weight: bold;
+}
+.maincentercontent {
+    width: 60%;
+    min-width: 510px;
+    vertical-align: top;
+    text-align: left;
+    background-color: #FFFFFF;
+}
+.mainsidecontent {
+    width: 20%;
+    min-width: 200px;
+    vertical-align: top;
+    text-align: left;
+    background-color: #FFFFFF;
+}
+.beheercontent {
+    width: 50%;
+    min-width: 510px;
+    vertical-align: top;
+    text-align: left;
+    background-color: #FFFFFF;
+}
+.beheersidecontent {
+    width: 4%;
+    min-width: 20px;
+    vertical-align: top;
+    text-align: left;
+    background-color: #FFFFFF;
+}
+.gebruikersettings {
+    background: url("../../resources/bsm/img/gebruiker.png") repeat scroll 0 -20px transparent;
+    top: -10px;
+    float: right;
+    display: block;
+    font-size: 0;
+    height: 15px;
+    width: 14px;
+}
+dt { width: 14em; float: left; }
+dd { margin-left: 14em; } 
+
+.registerbody { display: none }
+.stButton {
+    color: #000000;
+    cursor: pointer;
+    font-size: 11px;
+    line-height: 16px;
+    text-decoration: none;
+}
+.stButton .stLarge {
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+}
+.stButton .stLarge:hover {
+	opacity: 0.75;
+}
+.st_facebook_large span.stLarge {
+    background: url("../../resources/images/facebook_32.png");
+}
+.st_twitter_large span.stLarge {
+    background: url("../../resources/images/twitter_32.png");
+}
+.required {
+  background: url("../../resources/bsm/img/required.png") no-repeat scroll right top transparent;
+  padding-left:0px;
+  padding-right:15px;
+}
+.ui-accordion-header {
+    background-color: #CC0000 !important;
+    color: white !important;
+}
+
+.ui-accordion .ui-accordion-header a {
+    font-size: 16px !important;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+    background-color: #CC0000;
+    border: 1px solid #CC0000;
+    padding: 5px 5px;
+    margin-bottom: 5px;
+    color: white;
+
+    /* Gradient in browsers die het ondersteunen. */
+    background: -webkit-gradient(linear, center top, center bottom, from(#ffffff), to(#f3fcff));
+    background-image: -moz-linear-gradient(top, white, #CC0000 18px);
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#CC0000));
+}
+
+.hide {
+    display: none;
+}
+
+.notificatie {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.notificatie .closeNotificatie {
+    text-align: right;
+    margin-right: 5px;
+}
+
+.notificatie .content td {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: medium;
+}
+
+.notificatie .notificatiebullet {
+    margin-right: 20px;
+}
+#notificatieTable {
+    background-color: #99FF99;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+}

@@ -1,0 +1,25 @@
+.topcarousel .carousel {
+    height: 260px;
+    margin-bottom: 60px;
+}
+.topcarousel .carousel-caption {
+    z-index: 10;
+}
+.topcarousel .carousel .item {
+    background-color: #777777;
+    height: 300px;
+}
+.topcarousel .carousel-inner > .item > img {
+    height: 300px;
+    left: 0;
+    min-width: 100%;
+    position: absolute;
+    top: 0;
+}
+@media (min-width: 768px) {
+    .topcarousel .carousel-caption p {
+        font-size: 21px;
+        line-height: 1.4;
+        margin-bottom: 20px;
+    }
+}

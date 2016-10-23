@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:info="http://java.sun.com/jsf/composite/components/info"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <link rel="icon" href="favicon.ico" type="image/ico"/>
+        <link rel="shortcut icon" href="favicon.ico" type="image/ico"/>
+        <title>Robur '58 Homeplate</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"/>
+        <meta http-equiv="refresh" content="#{session.maxInactiveInterval};url=#{facesContext.externalContext.request.contextPath}/pages/bsm/homeplate.faces?reason=expired" />
+       <script>
+            function initializeTimer() {
+                
+            }
+            </script>
+        <style type="text/css">
+            TABLE.titellogo {
+                background: url(#{homepageController.titelLogo});
+                width: 950px;
+            }
+
+            TD.sponsorlogo {
+                background: url(../../resources/images/empty.gif) no-repeat 1px;
+                background-position: center;
+                align: center;
+                width: 300px;
+                height: 150px;
+            }
+        </style>
+
+        <!-- Alle stylesheet includes. -->
+        <ui:include src="template_css.xhtml" />
+        <!--h:outputScript library="scripts/lib" name="jquery-1.4.4.js"/-->
+        <h:outputScript library="scripts/lib" name="jquery-ui-1.8.5.custom.min.js"/>
+        <h:outputScript library="scripts/lib" name="jquery-cookie-1.0.js"/>
+        <h:outputScript library="scripts/lib" name="jquery-toggelbaar-1.0.js"/>
+        <!--h:outputScript library="scripts/lib" name="ddsmoothmenu.js" target="body"/-->
+        <!--h:outputScript library="scripts" name="homeplatetoggle.js" target="body"/-->
+        <!--h:outputScript library="scripts" name="registreertoggle.js" target="body"/-->
+
+        <ui:include src="template_script.xhtml" />
+        
+        <!--script type="text/javascript">
+
+            var contextPath = '#{request.contextPath}';
+            var downImage = contextPath + "/resources/images/menu/down.gif";
+            var rightImage = contextPath + "/resources/images/menu/right.gif";
+
+            $(document).ready(function(){
+                ddsmoothmenu.init({
+                    mainmenuid: "smoothmenu", //Menu DIV id
+                    rightImage: contextPath + '/resources/images/menu/right.gif',
+                    orientation: 'v', //Horizontal or vertical menu: Set to "h" or "v"
+                    classname: 'ddsmoothmenu-v', //class added to menu's outer DIV
+                    //customtheme: ["#804000", "#482400"],
+                    contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+                })
+            });
+
+            $(document).ready(function(){
+                  $("button").click(function(){
+                      $("#actuelewedstrijden").slideToggle(1000);
+                      $("button").attr('value','Verberg actuele wedstrijden');
+                  });
+            });
+
+        </script-->
+
+    </h:head>
+    <h:body styleClass="homePlateBody" onload="initializeTimer();">
+        <p:growl id="growl"/>
+        <table cellpadding="0" cellspacing="0" border="0" align="center" class="pageLayoutTable">
+            <tr>
+                <td colspan="3" height="24" bgcolor="white" align="right">
+                    <ui:include src="/pages/bsm/top.xhtml"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="titelcell" align="center">
+                    <ui:include src="/pages/bsm/header.xhtml"/>
+                </td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+                <td colspan="3" bgcolor="#FFFFFF">
+                    <ui:include src="/pages/bsm/headermenu.xhtml"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <ui:include src="/pages/bsm/logininfo.xhtml"/>
+                </td>
+            </tr>
+            <tr class="headerschaduw">
+                <td colspan="3">&#x00a0;</td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#FFFFFF">
+                    <ui:include src="/pages/bsm/notificatie.xhtml"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="beheersidecontent" >
+
+                </td>
+                <td class="beheercontent" >
+                    <ui:insert name="content"/>
+                </td>
+
+                <td class="beheersidecontent" >
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="white" >
+                    <ui:include src="/pages/bsm/footer.xhtml"/>
+                </td>
+            </tr>
+            <tr class="headerschaduw">
+                <td colspan="3">&#x00a0;</td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="white">
+                    <ui:include src="/pages/bsm/copyright.xhtml"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" height="8" bgcolor="white">
+                    &#x00a0;
+                </td>
+            </tr>
+        </table>
+
+        <h:panelGroup rendered="#{not empty homepageController.systeemMededelingScripts}">
+            <h:outputText value="&lt;script type='text/javascript'&gt;" escape="false"/>
+                <h:outputText value="$(document).ready(function() {" escape="false"/>
+                    <ui:repeat var="systeemMededeling" value="#{homepageController.systeemMededelingScripts}">
+                        <h:outputText value="#{systeemMededeling.mededeling}" escape="false"/>
+                    </ui:repeat>
+                <h:outputText value="})" escape="false"/>    
+            <h:outputText value="&lt;/script&gt;" escape="false"/>
+        </h:panelGroup>
+        
+    </h:body>
+</html>

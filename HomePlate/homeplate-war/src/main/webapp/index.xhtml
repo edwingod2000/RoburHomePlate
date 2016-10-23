@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/main.xhtml"
+      >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{navigatieController.bepaalNavigatie}" />
+    </f:metadata>
+
+    <!--h:panelGroup rendered="#{empty param.registratieSid}">
+        
+    </h:panelGroup>
+    <h:panelGroup rendered="#{not empty param.registratieSid}">
+    
+    </h:panelGroup-->
+</ui:composition>

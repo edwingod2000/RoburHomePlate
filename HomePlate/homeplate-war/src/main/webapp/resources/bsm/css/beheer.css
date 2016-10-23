@@ -1,0 +1,105 @@
+.mijntitel { 
+    text-align: right;
+    padding-right: 20px;
+    font-size: large;
+}
+.uploadbutton {
+    background-image:url("#{resource['images/filesystem:file_upload_server.png']}"); 
+    width: 48px;
+    height: 48px;
+}
+.mijndocumenten li {
+    list-style: none;
+}
+.mijndocumenten .folderfalse .foldertrue {
+    cursor: pointer;
+}
+
+.mijndocumenten #breadcrumb
+{
+    font: 11px Arial, Helvetica, sans-serif;
+    background-image:url("#{resource['images/filesystem:bc_bg.png']}"); 
+    background-repeat:repeat-x;
+    height:30px;
+    line-height:30px;
+    color:#9b9b9b;
+    border:solid 1px #cacaca;
+    width:100%;
+    overflow:hidden;
+    margin:0px;
+    padding:0px;
+}
+
+.mijndocumenten #breadcrumb li
+{
+    list-style-type:none;
+    float:left;
+    padding-left:10px;
+}
+
+.mijndocumenten #breadcrumb a
+{
+    height:30px;
+    display:block;
+    background-image:url("#{resource['images/filesystem:bc_separator.png']}"); 
+    background-repeat:no-repeat;
+    background-position:right;
+    padding-right: 15px;
+    text-decoration: none;
+    color:#454545;
+}
+
+.mijndocumenten #breadcrumb .home
+{
+    border: none;
+    margin: 8px 0px;
+}
+
+.mijndocumenten #breadcrumb a:hover
+{
+    color:#35acc5;
+}
+
+.mijndocumenten .folder ul {
+    display:none;
+    clear: both;
+}
+
+.mijndocumenten .folders li {
+    margin-left: -30px;
+}
+
+.mijndocumenten .bestanden li {
+    margin-left: -30px;
+}
+
+.mijndocumenten .bestandnaam {
+    font-size: normal;
+    font-weight: bold;
+}
+
+.mijndocumenten .bestandomschrijving {
+    margin-left: 20px;
+    font-style: italic;
+}
+
+.mijndocumenten .menubutton {
+    color: #000000;
+    background-color: lightgray
+}
+.mijndocumenten .folderpublished {
+    margin-left: -20px;
+    margin-top: 10px;
+}
+.mijndocumenten .bestandpublished {
+    margin-left: 23px;
+    margin-top: -43px;
+}
+
+#dialogen th {
+    text-align: right;
+}
+.gebruikervoorkeuren {
+    font-weight: bold;
+    font-size: larger;
+}

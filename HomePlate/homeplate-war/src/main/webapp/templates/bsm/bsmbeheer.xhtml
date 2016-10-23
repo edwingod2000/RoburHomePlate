@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:info="http://java.sun.com/jsf/composite/components/info"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="icon" href="favicon.ico" type="image/ico"/>
+        <link rel="shortcut icon" href="favicon.ico" type="image/ico"/>
+        <title>Robur '58 Homeplate</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"/>
+        <style type="text/css">
+            TABLE.titellogo {
+                background: url(#{homepageController.titelLogo});
+                width: 950px;
+            }
+
+        </style>
+
+        <!-- Alle stylesheet includes. -->
+        <ui:include src="template_css.xhtml" />
+        <h:outputScript library="scripts/lib" name="jquery-1.4.4.js"/>
+        <h:outputScript library="scripts/lib" name="jquery-cookie-1.0.js"/>
+        <h:outputScript library="scripts/lib" name="jquery-toggelbaar-1.0.js"/>
+        <h:outputScript library="scripts/lib" name="ddsmoothmenu.js" target="body"/>
+        <!--h:outputScript library="scripts" name="homeplatetoggle.js" target="body"/-->
+
+        <ui:include src="template_script.xhtml" />
+
+        <script type="text/javascript">
+            var contextPath = '#{request.contextPath}';
+            var downImage = contextPath + "/resources/images/menu/down.gif";
+            var rightImage = contextPath + "/resources/images/menu/right.gif";
+
+            $(document).ready(function(){
+                ddsmoothmenu.init({
+                    mainmenuid: "smoothmenu", //Menu DIV id
+                    rightImage: contextPath + '/resources/images/menu/right.gif',
+                    orientation: 'v', //Horizontal or vertical menu: Set to "h" or "v"
+                    classname: 'ddsmoothmenu-v', //class added to menu's outer DIV
+                    //customtheme: ["#804000", "#482400"],
+                    contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+                })
+            });
+            
+        </script>
+    </h:head>
+    <h:body styleClass="homePlateBody">
+
+        <table cellpadding="0" cellspacing="0" border="0" align="center" class="pageLayoutTable">
+            <tr>
+                <td colspan="3" height="24" bgcolor="white" align="right">
+                    <ui:include src="/pages/bsm/top.xhtml"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="titelcell" align="center">
+                    <ui:include src="/pages/bsm/header.xhtml"/>
+                </td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+                <td colspan="3" bgcolor="#FFFFFF">
+                    <ui:include src="/pages/bsm/beheermenu.xhtml"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <ui:include src="/pages/bsm/beheerlogininfo.xhtml"/>
+                </td>
+            </tr>
+            <tr class="headerschaduw">
+                <td colspan="3">&#x00a0;</td>
+            </tr>
+            <tr>
+                <td class="beheersidecontent">
+                    <table width="100%">
+                        <tr>
+                            <td>&#x00a0;</td>
+                            <td>
+                                <ui:include src="/pages/bsm/gebruikermenu.xhtml"/>
+                            </td>
+                            <td>&#x00a0;</td>
+                        </tr>
+                    </table>
+                </td>
+                <td class="beheercontent" >
+                    <ui:insert name="beheercontent"/>
+                    <h:panelGroup rendered="#{empty securityController.gebruiker}">
+                        <br/>
+                        <info:taalkeuze nl="Voor deze pagina moet u ingelogd zijn." en="For this page you need to login" />
+                        <h:link outcome="/pages/bsm/homeplate.xhtml"> <info:taalkeuze nl="Terug naar de startpagina" en="Back to the startpage."/></h:link>
+                        <br/>
+                        <br/>
+                    </h:panelGroup>
+
+                </td>
+                <td class="mainsidecontent">&#x00a0;</td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="white" >
+                    <ui:include src="/pages/bsm/footer.xhtml"/>
+                </td>
+            </tr>
+            <tr class="headerschaduw">
+                <td colspan="3">&#x00a0;</td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="white">
+                    <ui:include src="/pages/bsm/copyright.xhtml"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" height="8" bgcolor="white">
+                    &#x00a0;
+                </td>
+            </tr>
+        </table>
+    </h:body>
+    
+</html>

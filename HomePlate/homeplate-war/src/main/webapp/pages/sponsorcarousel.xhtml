@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+    <div id="sponsorWidget" class="sponsorcarousel">
+        <h2>Sponsors</h2>
+        <p>
+            <div class="carousel slide" data-ride="carousel" id="carousel-954571">
+                <div class="carousel-inner" role="listbox">
+                    <ui:repeat value="#{homepageController.sponsorCarroussel}" var="sponsorImage" varStatus="index">  
+                        <div class="item">
+                            <h:link onclick="javascript:openNewWindow('#{sponsorImage.url}')">
+                                <p:graphicImage value="http://homeplate.robur58.com/sponsors/#{sponsorImage.bestandsnaam}" rendered="#{not empty sponsorImage.bestandsnaam}" />
+                                <h:outputText value="#{sponsorImage.titel}" rendered="#{empty sponsorImage.bestandsnaam}" />
+                            </h:link> 
+                            <!--<div class="carousel-caption"></div>-->
+                        </div>
+                    </ui:repeat>
+                </div> 
+            </div>
+            <!-- /Carousel -->
+        </p>
+    </div>
+</ui:composition>

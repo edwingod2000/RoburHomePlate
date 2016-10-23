@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <h:head>
+        <title>Robur '58 Homeplate</title>
+        <meta http-equiv="refresh" content="#{session.maxInactiveInterval};url=#{facesContext.externalContext.request.contextPath}/pages/bsm/homeplate.faces?reason=expired" />
+
+        <!-- Enable HTML5 tags in IE. -->
+        <h:outputText value="&lt;![endif]--&gt;" escape="false" />
+
+        <!-- Alle stylesheet includes. -->
+        <ui:include src="template_css.xhtml" />
+
+        <h:outputScript library="scripts/lib" name="jquery-1.4.4.js"/>
+        <h:outputScript library="scripts/lib" name="ddsmoothmenu.js" target="body"/>
+
+        <script type="text/javascript">
+
+            var contextPath = '#{request.contextPath}';
+            var downImage = contextPath + "/resources/images/menu/down.gif";
+            var rightImage = contextPath + "/resources/images/menu/right.gif";
+
+            $(document).ready(function(){
+                ddsmoothmenu.init({
+                    mainmenuid: "smoothmenu", //Menu DIV id
+                    rightImage: contextPath + '/resources/images/menu/right.gif',
+                    orientation: 'v', //Horizontal or vertical menu: Set to "h" or "v"
+                    classname: 'ddsmoothmenu-v', //class added to menu's outer DIV
+                    //customtheme: ["#804000", "#482400"],
+                    contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+                })
+
+            });
+        </script>
+    </h:head>
+
+    <h:body>
+        <!-- Pagina Header. -->
+        <header class="test2">
+            <ui:include src="/pages/common/header.xhtml" />
+        </header>
+
+        <!-- Hoofdmenu. -->
+        <!-- Print het menu. -->
+        <div class="mainmenu">
+            <div id="smoothmenu">
+                <h:outputText escape="false" value="#{navigatieController.menu}"/>
+            </div>
+        </div>
+        <div class="tabbladen">
+            <!--ui:include src="/pages/common/tabbladen.xhtml" /-->
+        </div>
+        <div class="toplinks">
+            <ul>
+                <li><a href="#">Wijzigingen</a></li>
+                <li><a href="#">Beheer</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#"><div class="uk"/></a></li>
+            </ul>
+        </div>
+
+    	<div id="page">
+            <ui:insert name="content"/>
+        </div>
+
+        <div id="footer">
+            <ui:insert name="footer">
+                    <ui:include src="/pages/common/footer.xhtml" />
+            </ui:insert>
+        </div>
+
+        <!-- JavaScript libraries onderaan de pagina inladen (om performance redenen). -->
+        <ui:include src="template_javascript.xhtml" />
+    </h:body>
+
+</html>

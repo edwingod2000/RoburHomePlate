@@ -1,0 +1,160 @@
+/* modules - floating box as container */
+.mod {
+  width:192px;
+  vertical-align:top;
+  overflow:hidden;
+}
+.col2 .mod, .col3 .mod {
+  float:left;
+}
+.mod .top {
+  background-image: url(../../resources/bsm/img/mod2_top.gif);
+}
+.top {
+  height:22px;
+  margin:0px 4px;
+}
+.top .cnt {
+  padding:0px 9px;
+  margin:0px;
+  color:white;
+  line-height:24px;
+  height:22px;
+  overflow:hidden;
+}
+.middle {
+  width:auto;
+  background-color:white;
+  background-image: url(../../resources/bsm/img/baseball2.gif);
+  border-left: 1px solid #CC0000;
+  border-right: 1px solid #CC0000;
+  padding:8px;
+  padding-bottom:4px;
+  margin:0px 4px;
+}
+.mod .middle .cnt {
+  margin:0px;
+  width:166px;
+  overflow:hidden;
+}
+.mod .bottom {
+  background-image: url(../../resources/bsm/img/mod2_bot.gif);
+}
+div.bottom, div.subnavbot {
+  height:5px;
+  margin: 0px 4px 8px 4px;
+  overflow:hidden;
+}
+
+/* 2 columns */
+.mod2 {
+  width:384px;
+  overflow:hidden;
+  vertical-align:top;
+}
+.col3 .mod2 {
+  float:left;
+}
+.mod2 .top {
+  background-image: url(../../resources/bsm/img/mod2_top.gif);
+}
+.mod2.notitle .top {
+  background-image: url(../../resources/bsm/img/mod2_notitle_top.gif);
+  height:5px;
+  overflow:hidden;
+}
+.mod2 .middle {
+  position: relative; /* position: reference for halo image */
+  width: 358px;
+}
+.mod2 .middle .cnt {
+  width:358px;
+  overflow:hidden;
+}
+.mod2.notitle .middle {
+  padding-top:4px;
+}
+.mod2 .bottom {
+  background-image: url(../../resources/bsm/img/mod2_bot.gif);
+}
+
+/* 3 columns */
+.mod3small {
+  width:208px;
+  overflow:hidden;
+  vertical-align:top;
+}
+.mod3small .top {
+  background-image: url(../../resources/bsm/img/mod3small_top.gif);
+}
+.mod3small .middle .cnt {
+  width:180px;
+  overflow:hidden;
+}
+.mod3small .bottom {
+  background-image: url(../../resources/bsm/img/mod3small_bot.gif);
+}
+.mod3medium {
+  width:523px;
+  overflow:hidden;
+  vertical-align:top;
+}
+.mod3medium .top {
+  background-image: url(../../resources/bsm/img/mod3medium_top.gif);
+}
+.mod3medium .middle .cnt {
+  width:480px;
+  overflow:hidden;
+}
+.mod3medium .bottom {
+  background-image: url(../../resources/bsm/img/mod3medium_bot.gif);
+}
+.mod3big {
+  width:576px;
+  overflow:hidden;
+  vertical-align:top;
+}
+.mod3big .top {
+  background-image: url(../../resources/bsm/img/mod3_top.gif);
+}
+.mod3big .middle .cnt {
+  width:550px;
+  overflow:hidden;
+}
+.mod3big .bottom {
+  background-image: url(../../resources/bsm/img/mod3_bot.gif);
+}
+
+div.icn {
+  float:right;
+  width:46px;
+  height:50px;
+  background-color:white;
+}
+div.icn img {
+  border:none;
+  margin-bottom:8px;
+  margin-left:4px;
+  width:42px;
+  height:42px;
+}
+.mod2 .middle .cnt div.col-left {
+  float: left;
+  width: 170px;
+  overflow: hidden;
+}
+.mod2 .middle .cnt div.col-right {
+  float: right;
+  width: 170px;
+  overflow: hidden;
+}
+.middle .cnt div.col-left p,
+.middle .cnt div.col-right p
+ {
+  margin: 5px 0px;
+}
+.middle .cnt div.halo {
+  float: right;
+  height: 45px;
+  width: 125px;
+}

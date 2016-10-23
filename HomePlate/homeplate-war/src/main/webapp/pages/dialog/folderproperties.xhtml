@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+    <h:form role="form">
+        <div class="form-group">
+            <label>Gegevens van map:&nbsp;</label>
+            <h:outputText value="#{documentController.selectedFolder.naam}"/>
+            <br/>
+            <label>Datum aangemaakt:&nbsp;</label>
+            <h:outputText value="#{documentController.selectedFolder.datumAangemaakt}">
+                <f:convertDateTime pattern="dd-MM-yyyy hh:mm" timeZone="#{homePlateSessionTO.timezone}" />
+            </h:outputText>
+            <br/>
+            <label>Aangemaakt door:&nbsp;</label>
+            <h:outputText value="#{documentController.selectedFolder.gbrVolgnr.displayNaam}"/>
+        </div>
+        <div class="form-group">
+            <label for="foldernaam">Naam:</label>
+            <h:inputText styleClass="form-control" id="foldernaam" value="#{documentController.selectedFolder.naam}"/>
+        </div>
+        <div class="checkbox">
+            <label>
+                <h:selectBooleanCheckbox id="foldergepubliceerd" value="#{documentController.selectedFolder.gepubliceerd}" /> Gepubliceerd
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="folderomschrijving">Omschrijving:</label>
+            <h:inputText styleClass="form-control" id="folderomschrijving" value="#{documentController.selectedFolder.omschrijving}" size="50" />
+        </div>
+        
+        <p:commandButton styleClass="btn btn-primary" action="#{documentController.bewaarFolderProperties}" value="Bewaar" oncomplete="PF('dialogFolderProperties').hide();">
+            <f:ajax render="@form"/>
+        </p:commandButton>
+        <p:commandButton styleClass="btn btn-default" immediate="true" value="Annuleren" oncomplete="PF('dialogFolderProperties').hide();"/>
+    </h:form>
+</ui:composition>

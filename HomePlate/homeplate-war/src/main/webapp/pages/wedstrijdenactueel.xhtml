@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+      >
+
+   <div class="wedstrijden">
+        <h2>
+            <info:taalkeuze nl="Wedstrijden" en="Games"/>
+        </h2>
+        <p>
+            <h:panelGroup rendered="#{empty homepageController.wedstrijdDatums}">
+                <info:taalkeuze nl="Geen actuele wedstrijden" en="No upcomming games"/>
+            </h:panelGroup>
+
+            <ui:repeat var="datum" value="#{homepageController.wedstrijdDatums}">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 wedstrijddatum">
+                        <h:outputText value="#{datum}" rendered="#{homePlateSessionTO.dutch}">
+                            <f:convertDateTime pattern="dd-MM-yyyy EEEE" locale="NL_nl" timeZone="#{homePlateSessionTO.timezone}" />
+                        </h:outputText>
+                        <h:outputText value="#{datum}" rendered="#{not homePlateSessionTO.dutch}">
+                            <f:convertDateTime pattern="dd-MM-yyyy EEEE" timeZone="#{homePlateSessionTO.timezone}"/>
+                        </h:outputText>            
+                    </div>
+                </div>
+                <ui:repeat var="soort" value="#{homepageController.wedstrijdSoorten(datum)}">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 wedstrijdsoort">
+                            <h:panelGroup rendered="#{soort == 'HB' || soort == 'DEMOHB'}">
+                                <info:taalkeuze nl="Honkbal" en="Baseball"/>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{soort == 'SB'|| soort == 'DEMOSB'}">
+                                <info:taalkeuze nl="Softbal" en="Softball"/>
+                            </h:panelGroup>
+                        </div>
+                    </div>
+                    <ui:repeat var="wedstrijd" value="#{homepageController.wedstrijdenPerSoort(datum,soort)}">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                <h:panelGroup rendered="#{not empty wedstrijd.afgelast and wedstrijd.afgelast == 'J'}">
+                                    <del>
+                                        <h:outputText value="#{wedstrijd.tijdstip}"/>
+                                    </del>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{empty wedstrijd.afgelast or wedstrijd.afgelast != 'J'}">
+                                      <h:outputText value="#{wedstrijd.tijdstip}"/>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{wedstrijd.afgelast == 'G'}">
+                                    <button class="wedstrijdinfo btn" data-toggle="popover" data-content="Gewijzigd! / Changed" title="Info" >
+                                        <span class="glyphicon glyphicon-exclamation-sign gewijzigd-icon"></span>
+                                    </button>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{wedstrijd.afgelast == 'J'}">
+                                    <button class="wedstrijdinfo btn" data-toggle="popover" data-content="Afgelast! / Canceled" title="Info" >
+                                        <span class="glyphicon glyphicon-remove-sign afgelast-icon"></span>
+                                    </button>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{wedstrijd.afgelast == 'D'}">
+                                    <button class="wedstrijdinfo btn" data-toggle="popover" data-content="Definitief! / Final agreed!" title="Info" >
+                                        <span class="glyphicon glyphicon-ok-sign definitief-icon"></span>
+                                    </button>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{wedstrijd.afgelast == 'V'}">
+                                    <button class="wedstrijdinfo btn" data-toggle="popover" data-content="Voorlopig! / Not Final agreed!" title="Info" >
+                                        <span class="glyphicon question-sign voorlopig-icon"></span>
+                                    </button>
+                                </h:panelGroup>
+                            </div>
+                            <div class="col-md-2 col-sm-10 col-xs-10">
+                                <h:outputText value="#{wedstrijd.wedstrijdNummer}"/>
+                            </div>
+                            <div class="col-md-3 col-sm-5 col-xs-5">
+                                <h:outputText value="#{wedstrijd.displayTeamThuis}" escape="false"/>
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                -
+                            </div>
+                            <div class="col-md-3 col-sm-4 col-xs-4">
+                                <h:outputText value="#{wedstrijd.displayTeamUit}" escape="false"/>
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                <h:panelGroup rendered="#{not empty wedstrijd.displayInfo}">
+                                    <button class="wedstrijdextrainfo btn" data-toggle="popover" data-content="#{wedstrijd.displayInfo}" title="Info" >
+                                        <span class="glyphicon glyphicon-info-sign"></span>
+                                    </button>
+                                </h:panelGroup>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </ui:repeat>
+            </ui:repeat>
+        </p>
+        <h:link styleClass="btn btn-primary" outcome="#{navigatieController.executeNavigation(3)}">
+            <info:taalkeuze nl="Meer wedstrijden" en="More games"/>
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </h:link>
+    </div>
+
+</ui:composition>

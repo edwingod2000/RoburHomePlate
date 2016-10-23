@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/main.xhtml"
+      >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{homepageController.resetContext}" />
+        <f:event type="preRenderView" listener="#{navigatieController.setCurrentTabblad(4)}" />        
+        <f:event type="preRenderView" listener="#{kalenderController.executeOphalenKalenderInfo}" />
+        <f:event type="preRenderView" listener="#{kalenderController.verwijderContextItems}" />
+    </f:metadata>
+
+    <ui:define name="content">
+        <div class="info">
+            <div class="title"><h2><info:taalkeuze nl="Kalender" en="Calendar"/></h2></div>
+            <div class="content">
+                <table>
+                    <tr align="left">
+                        <th><info:taalkeuze nl="Datum" en="Date"/></th>
+                        <th>&#160;&#160;</th>
+                        <th><info:taalkeuze nl="Activiteit" en="Activity"/></th>
+                    </tr>
+
+                    <ui:repeat var="item" value="#{kalenderController.kalenderInfo}">
+                        <tr>
+                            <td valign="TOP">
+                                <h:outputLabel value="#{item.datum}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                </h:outputLabel>
+                            </td>
+                            <td>&#160;&#160;</td>
+                            <td>
+                                <b>
+                                    <h:outputLabel value="#{item.titel}"/>
+                                </b>
+                                <br/>
+                                <h:outputText value="#{item.omschrijving}" rendered="#{not empty item.omschrijving}"/>
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                    <h:panelGroup rendered="#{empty kalenderController.kalenderInfo}">
+                        <tr>
+                            <td colspan="3">
+                                <info:taalkeuze nl="Geen evenementen." en="No events."/>
+                            </td>
+                        </tr>
+                    </h:panelGroup>
+
+                </table>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

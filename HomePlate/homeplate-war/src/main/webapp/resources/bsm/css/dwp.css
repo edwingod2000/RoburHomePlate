@@ -1,0 +1,163 @@
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; FONT: 11px verdana; COLOR: #000000; PADDING-TOP: 0px; BACKGROUND-COLOR: #FFFFFF
+}
+FORM {
+	DISPLAY: inline
+}
+H1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #CC0000; FONT-FAMILY: arial
+}
+H2 {
+	FONT-SIZE: 10pt; COLOR: #CC0000; FONT-STYLE: italic; FONT-FAMILY: arial
+}
+H3 {
+	FONT-SIZE: 24pt; COLOR: #FF0000; FONT-FAMILY: arial
+}
+TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; FONT: 11px verdana; PADDING-TOP: 0px
+}
+A:link {
+	COLOR: #CC0000
+}
+A:visited {
+	COLOR: #CC0000
+}
+
+DIV.tabbar {
+	BACKGROUND: url(../img/tabbarBorder.gif) #ffffff repeat-x 50% bottom; FLOAT: left; WIDTH: 100%
+}
+DIV.tabbar UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+DIV.tabbar LI {
+	PADDING-RIGHT: 0px; DISPLAY: inline; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+DIV.tabbar A {
+	FONT-WEIGHT: bold; FONT-SIZE: x-small; BACKGROUND: url(../img/tabbarRight.gif) no-repeat right top; FLOAT: left; BORDER-BOTTOM: #84b0c7 1px solid; TEXT-DECORATION: none
+}
+DIV.tabbar A:hover {
+	BACKGROUND-POSITION: 100% -150px
+}
+DIV.tabbar A:link {
+	COLOR: #CC0000
+}
+DIV.tabbar A:visited {
+	COLOR: #CC0000
+}
+DIV.tabbar A:active {
+	COLOR: #CC0000
+}
+DIV.tabbar A:hover {
+	COLOR: #CC0000
+}
+DIV.tabbar SPAN {
+	PADDING-RIGHT: 9px; DISPLAY: block; PADDING-LEFT: 9px; BACKGROUND: url(../img/tabbarLeft.gif) no-repeat left top; FLOAT: left; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; WHITE-SPACE: nowrap
+}
+DIV.tabbar SPAN {
+	FLOAT: none
+}
+DIV.tabbar A:hover SPAN {
+	BACKGROUND-POSITION: 0% -150px
+}
+DIV.tabbar LI#current A {
+	BORDER-TOP-WIDTH: 0px; BACKGROUND-POSITION: 100% -150px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+DIV.tabbar LI#current SPAN {
+	BACKGROUND-POSITION: 0% -150px; PADDING-BOTTOM: 6px
+}
+DIV.error {
+	FONT-SIZE: 12px; VISIBILITY: visible; COLOR: red; FONT-FAMILY: arial
+}
+SPAN.contentHeaderDBlue {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; FONT-FAMILY: Arial; COLOR: #003399
+}
+SPAN.dwpModuleTitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; FONT-FAMILY: Arial; COLOR: #CC0000
+}
+SPAN.toolbar {
+	BORDER-RIGHT: #CC0000 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #CC0000 1px solid; DISPLAY: block; PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 7pt; VISIBILITY: visible; PADDING-BOTTOM: 4px; BORDER-LEFT: #CC0000 1px solid; COLOR: #FFFFFF; PADDING-TOP: 4px; BORDER-BOTTOM: #CC0000 1px solid; FONT-FAMILY: tahoma; POSITION: relative; HEIGHT: 25px; BACKGROUND-COLOR: #CC0000
+}
+DIV.recordrange {
+	FONT-WEIGHT: bold; FONT-SIZE: 7pt; COLOR: #FFFFFF; FONT-FAMILY: tahoma;
+}
+INPUT.normal {
+	BORDER-RIGHT: #CC0000 1px solid; BORDER-TOP: #CC0000 1px solid; FONT-SIZE: 8pt; BORDER-LEFT: #CC0000 1px solid; COLOR: #000000; BORDER-BOTTOM: #CC0000 1px solid; FONT-FAMILY: verdana; BACKGROUND-COLOR: #F4F4F4
+}
+.dwpTableRecordData SELECT {
+    BORDER-RIGHT: #CC0000 1px solid; BORDER-TOP: #CC0000 1px solid; FONT-SIZE: 8pt; BORDER-LEFT: #CC0000 1px solid; COLOR: #000000; BORDER-BOTTOM: #CC0000 1px solid; FONT-FAMILY: verdana; BACKGROUND-COLOR: #F4F4F4	
+}
+.dwpTableRecordData INPUT {
+    BORDER-RIGHT: #CC0000 1px solid; BORDER-TOP: #CC0000 1px solid; FONT-SIZE: 8pt; BORDER-LEFT: #CC0000 1px solid; COLOR: #000000; BORDER-BOTTOM: #CC0000 1px solid; FONT-FAMILY: verdana; BACKGROUND-COLOR: #F4F4F4	
+}
+INPUT.button {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 100%; MARGIN: 1px; BORDER-LEFT: #000000 1px solid; CURSOR: hand; COLOR: #FFFFFF; BORDER-BOTTOM: #000000 1px solid; BACKGROUND-COLOR: #CC0000
+}
+TABLE.tabHeader {
+	BORDER-RIGHT: #CC0000 1px solid; padding-left: 5mm; BORDER-TOP: #CC0000 1px solid; BORDER-LEFT: #CC0000 1px solid; WIDTH: 100%; BORDER-BOTTOM: #CC0000 1px solid; BACKGROUND-COLOR: #FFFFFF; border-spacing: 0
+}
+TABLE.dwpTableRecordData {
+    line-height: 100px; BORDER-RIGHT: #CC0000 1px solid; padding-left: 5mm; BORDER-TOP: #CC0000 1px solid; BORDER-LEFT: #CC0000 1px solid; WIDTH: 100%; BORDER-BOTTOM: #CC0000 1px solid; BACKGROUND-COLOR: #FFFFFF; border-spacing: 0
+}
+TABLE.tableRecordList {
+	BORDER-RIGHT: #CC0000 1px solid; padding-left: 5mm; BORDER-TOP: #CC0000 1px solid; BORDER-LEFT: #CC0000 1px solid; WIDTH: 100%; BORDER-BOTTOM: #CC0000 1px solid; BACKGROUND-COLOR: #FFFFFF; border-spacing: 0
+}
+TABLE.dwpTableBreadCrums {
+    COLOR:#CC0000;
+}
+TD.dwpCellBreadCrums {
+	FONT-SIZE: 12px; COLOR: #CC0000; PADDING-BOTTOM: 2px; BORDER-BOTTOM: #CC0000 1px solid
+}
+A.dwpLinkBreadCrums {
+	FONT-SIZE: 12px; COLOR: #CC0000; PADDING-BOTTOM: 2px; BORDER-BOTTOM: #CC0000 1px solid
+}
+TD.dblue {
+	COLOR: #CC0000; padding-left: 5px
+}
+TD.dbluelabel {
+	COLOR: #CC0000; padding-left: 3px
+}
+TD.dwpRecordDataLabel {
+	COLOR: #CC0000; padding-left: 3px;
+}
+TD.dwpRecordData {
+	COLOR: #000000
+}
+TD.dwpModuleDescriptionTop {
+	BACKGROUND: url(../img/blue_dot_line.gif) #ffffff repeat-x 50% bottom; FLOAT: left; WIDTH: 100%
+}
+TD.dwpModuleDescription {
+	COLOR: #003399
+}
+TD.normal {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: tahoma; BACKGROUND-COLOR: #ffffff
+}
+TD.tableCellData {
+	COLOR: #000000
+}
+TD.tableCellHeader {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; vertical-align: top
+}
+TR.tableRowEvenStyle {
+	COLOR: #000000; BACKGROUND-COLOR: #CCCCCC
+}
+TR.tableRowOddStyle {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; FONT: 11px verdana; PADDING-TOP: 0px
+}
+TR.tableRowHeader {
+	COLOR: #FFFFFF; BACKGROUND-COLOR: #CC0000
+}
+.dwpButton {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 100%; MARGIN: 1px; BORDER-LEFT: #000000 1px solid; CURSOR: hand; COLOR: #ffffff; BORDER-BOTTOM: #000000 1px solid; BACKGROUND-COLOR: #CC0000
+}
+.bgLBlue {
+	COLOR: #003399; BACKGROUND-COLOR: #adceff
+}
+.bgXXLBlue {
+	COLOR: #003399; BACKGROUND-COLOR: #ebf4fd
+}
+.tabelheader {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; vertical-align: top
+}
+.currentjaar {
+    font-weight: bold; font-size: larger;
+}

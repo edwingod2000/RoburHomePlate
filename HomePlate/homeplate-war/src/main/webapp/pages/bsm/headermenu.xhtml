@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <div id="headernav">
+        <h:form id="headermenuForm">
+            <ul>
+                <li id="#{navigatieController.getTabbladId(1)}">
+                    <h:link outcome="#{navigatieController.executeNavigatie(1)}"><span>HomePlate</span></h:link>
+                </li>
+                <li id="#{navigatieController.getTabbladId(2)}">
+                    <h:link outcome="#{navigatieController.executeNavigatie(2)}"><span>Teams</span></h:link>
+                </li>
+                <li id="#{navigatieController.getTabbladId(3)}">
+                    <h:link outcome="#{navigatieController.executeNavigatie(3)}"><span><info:taalkeuze nl="Wedstrijden" en="Games"/></span></h:link>
+                </li>
+                <li id="#{navigatieController.getTabbladId(4)}">
+                    <h:link outcome="#{navigatieController.executeNavigatie(4)}"><span><info:taalkeuze nl="Kalender" en="Calendar"/></span></h:link>
+                </li>
+                <li id="#{navigatieController.getTabbladId(5)}">
+                    <h:link outcome="#{navigatieController.executeNavigatie(5)}"><span><info:taalkeuze nl="Gastenboek" en="Guestbook"/></span></h:link>
+                </li>
+                <li id="#{navigatieController.getTabbladId(6)}">
+                    <h:link outcome="#{navigatieController.executeNavigatie(6)}"><span><info:taalkeuze nl="Lid worden" en="Become member"/></span></h:link>
+                </li>
+                <li id="#{navigatieController.getTabbladId(8)}">
+                    <h:link outcome="#{navigatieController.executeNavigatie(8)}"><span><info:taalkeuze nl="Idee&euml;nbus" en="Ideabox"/></span></h:link>
+                </li>
+                <h:panelGroup rendered="#{documentController.magDocumentenZien}">
+                    <li id="#{navigatieController.getTabbladId(7)}">
+                        <h:link outcome="#{navigatieController.executeNavigatie(7)}"><span>Documenten</span></h:link>
+                    </li>
+                </h:panelGroup>
+                
+            </ul>
+        </h:form>
+    </div>
+
+ </ui:composition>

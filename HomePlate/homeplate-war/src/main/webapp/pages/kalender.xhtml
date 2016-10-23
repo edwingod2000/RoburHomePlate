@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{kalenderController.executeOphalenKalenderInfoForHomepage}" />
+    </f:metadata>  
+    
+    <div id="kalenderWidget">
+        <h2><info:taalkeuze nl="Kalender" en="Calendar" /></h2>
+        <p>
+            <h:form id="kalenderForm">
+                <ui:repeat var="item" value="#{kalenderController.kalenderInfoHomepage}">
+                    <div class="date">
+                        <b>
+                            <h:outputLabel value="#{item.datum}">
+                                <f:convertDateTime pattern="dd-MM-yyyy" timeZone="#{kalenderController.timeZone}"/>
+                            </h:outputLabel>
+                        </b>
+                    </div>
+                    <h:outputLabel value="#{item.titel}"/>
+                </ui:repeat>
+                <h:panelGroup rendered="#{empty kalenderController.kalenderInfo}">
+                    <info:taalkeuze nl="Geen evenementen." en="No events."/>
+                </h:panelGroup>
+            </h:form>  
+        </p>
+        <p>
+            <h:link class="btn" outcome="#{navigatieController.executeNavigation(4)}"><info:taalkeuze nl="Meer kalender" en="More calendar"/></h:link>
+        </p>
+    </div>
+
+</ui:composition>

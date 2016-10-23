@@ -1,0 +1,71 @@
+<!DOCTYPE table SYSTEM "/resources/entities.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"      
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:info="http://java.sun.com/jsf/composite/components/info"
+      >
+
+    <!-- INTERFACE -->
+    <composite:interface>
+        <composite:attribute name="infoLijstObject" type="com.robur58.web.view.InfoLijst" required="true" />
+        <composite:attribute name="showDate" type="java.lang.Boolean" default="false" required="false" />
+        <composite:attribute name="editModeAvailable" type="java.lang.Boolean" default="false" required="false" />
+    </composite:interface>
+
+    <!-- IMPLEMENTATION -->
+    <composite:implementation>
+        <ui:repeat var="item" value="#{cc.attrs.infoLijstObject.infoLijst}">
+            <h:panelGroup rendered="#{(homePlateSessionTO.dutch and not empty item.titel) or (not homePlateSessionTO.dutch and not empty item.titelEn)}">
+                <div class="infoitem">
+                    <a name="INFO#{item.volgnr}"></a>  
+                    <h2>
+                        <h:panelGroup rendered="#{cc.attrs.showDate}" styleClass="infodatum pull-left">
+                            <div class="infodag">
+                                <h:outputText value="#{item.datumBericht}">
+                                    <f:convertDateTime pattern="dd" type="date"/>
+                                </h:outputText>
+                            </div>
+                            <div class="infomaand">
+                                <h:outputText value="#{item.datumBericht}">
+                                    <f:convertDateTime pattern="MM" type="date"/>
+                                </h:outputText>
+                            </div>
+                            <div class="infojaar">
+                                <h:outputText value="#{item.datumBericht}">
+                                    <f:convertDateTime pattern="yyyy" type="date"/>
+                                </h:outputText>
+                            </div>
+                        </h:panelGroup>
+                        <div class="infotitel"><info:taalkeuze nl="#{item.titel}" en="#{item.titelEn}"/></div>
+                    </h2>
+                    <p>
+                        <info:taalkeuze nl="#{item.bericht}" en="#{item.berichtEn}" escape="false"/>
+                    </p>
+                    <p>
+                        <h:panelGroup rendered="#{(not empty item.pgaVolgnr and homePlateSessionTO.dutch)}">
+                            <h:link styleClass="btn" outcome="/pages/extraInfopagina" value="Lees verder ...">
+                                <f:param name="volgnr" value="#{item.pgaVolgnr}"/>
+                                <f:param name="info" value="#{item.volgnr}"/>
+                            </h:link>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{(not empty item.pgaEnVolgnr and not homePlateSessionTO.dutch)}">
+                            <h:link styleClass="btn" outcome="/pages/bsm/extraInfopagina" value="Read more ...">
+                                <f:param name="volgnr" value="#{item.pgaEnVolgnr}"/>
+                                <f:param name="info" value="#{item.volgnr}"/>
+                            </h:link>
+                        </h:panelGroup>
+                    </p>
+                </div>
+            </h:panelGroup>
+        </ui:repeat>
+        <h:panelGroup rendered="#{(homepageController.homePlateSessionTO.dutch and cc.attrs.infoLijstObject.NLEmpty) or (not homepageController.homePlateSessionTO.dutch and cc.attrs.infoLijstObject.ENEmpty)}">
+            <h2>Sorry!</h2>
+            <p>
+                <info:taalkeuze nl="Geen informatie gevonden." en="No information found." />
+            </p>
+        </h:panelGroup>
+    </composite:implementation>
+</html>

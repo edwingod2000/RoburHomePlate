@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <div id="highlightsWidget">
+        <h2>
+            <info:taalkeuze en="Highlights" nl="Hoogtepunten" />
+        </h2>
+        <p>
+            <h:form id="highlightsForm">
+                <ui:repeat var="highlight" value="#{homepageController.homePlateSessionTO.highlightItems}">
+                    <div class="row">
+                        <div class="col-xs-1 col-md-1 highlightarrow">
+                            <h:graphicImage library="bsm/img" name="right_red_arrow.gif"/>
+                        </div>
+                        <div class="col-xs-11 col-md-9">
+                            <h:link outcome="/pages/infopagina.faces?typeInfo=#{highlight.typeInfo.volgnr}" value="#{highlight.titel}"/>
+                        </div>
+                    </div>
+                </ui:repeat>
+            </h:form>
+        </p>
+
+    </div>
+</ui:composition>

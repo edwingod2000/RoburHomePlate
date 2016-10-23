@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.labeld">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:gui="http://java.sun.com/jsf/composite/components/gui"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/mainplain.xhtml"
+      >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{homePlateSessionTO.setShowContextWedstrijdenActueel(false)}" />
+        <f:event type="preRenderView" listener="#{navigatieController.setCurrentTabblad(9)}" />
+    </f:metadata>
+    
+    <ui:define name="content">
+        <h:panelGroup rendered="#{not empty securityController.gebruiker}">
+            <p:messages showDetail="false"/> 
+            <h2><info:taalkeuze nl="Gebruiker gegevens" en="User settings"/></h2>
+            <p>
+                <h:form id="gebruikerForm" role="form">
+                    <div class="formulier">
+                        <div class="form-group">
+                            <label for="gebruikerNaam"><info:taalkeuze nl="Voornaam *" en="Firstname *"/></label>
+                            <h:inputText id="gebruikerNaam" styleClass="form-control" value="#{securityController.gebruiker.voornaam}" required="true" requiredMessage="Voornaam is verplicht." disabled="#{!gebruikersController.gebruikerWijzigen}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="gebruikerTussenvoegsel"><info:taalkeuze nl="Tussenvoegsel" en="Middlename"/></label>
+                            <h:inputText id="gebruikerTussenvoegsel" styleClass="form-control" value="#{securityController.gebruiker.tussenvoegsel}" disabled="#{!gebruikersController.gebruikerWijzigen}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="gebruikerAchternaam"><info:taalkeuze nl="Achternaam *" en="Lastname *"/></label>
+                            <h:inputText id="gebruikerAchternaam" styleClass="form-control" value="#{securityController.gebruiker.achternaam}" required="true" requiredMessage="Achternaam is verplicht." disabled="#{!gebruikersController.gebruikerWijzigen}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="gebruikerEmail">E-Mail *</label>
+                            <h:inputText id="gebruikerEmail" styleClass="form-control" value="#{securityController.gebruiker.email}" required="true" requiredMessage="E-Mail is verplicht." disabled="#{!gebruikersController.gebruikerWijzigen}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="gebruikerTelefoonnummer"><info:taalkeuze nl="Telefoonnummer" en="Phonenumber"/></label>
+                            <h:inputText id="gebruikerTelefoonnummer" styleClass="form-control" value="#{securityController.gebruiker.telefoonNummer}" disabled="#{!gebruikersController.gebruikerWijzigen}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="gebruikerGeboortedatum"><info:taalkeuze nl="Geboortedatum" en="Birthdate"/></label>
+                            <h:inputText id="gebruikerGeboortedatum" styleClass="form-control" value="#{securityController.gebruiker.geboortedatum}" disabled="#{!gebruikersController.gebruikerWijzigen}" converterMessage="Geboortedatum: geen geldige datum (DD-MM-JJJJ)">
+                                <f:convertDateTime pattern="dd-MM-yyyy" timeZone="#{homePlateSessionTO.timezone}" />
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="gebruikerLidnummer"><info:taalkeuze nl="Lidnummer" en="Membership no."/></label>
+                            <h:inputText id="gebruikerLidnummer" styleClass="form-control" value="#{securityController.gebruiker.lidNummer}" disabled="#{!gebruikersController.gebruikerWijzigen}"/>
+                        </div>
+
+                        <h2><info:taalkeuze nl="Voorkeuren" en="Preferences"/></h2>
+                        <div class="form-group">
+                            <label for="gebruikerPapierenNieuws"><info:taalkeuze nl="Strike / Nieuwsbrief via post ontvangen" en="Strike / Newsletter via snailmail"/></label>
+                            <h:selectOneMenu id="gebruikerPapierenNieuws" styleClass="form-control" value="#{securityController.gebruiker.papierenNieuws}" disabled="#{!gebruikersController.gebruikerWijzigen}">
+                                <f:selectItem itemValue="J" itemLabel="#{homePlateSessionTO.dutch ? 'Ja' : 'Yes'}" />
+                                <f:selectItem itemValue="N" itemLabel="#{homePlateSessionTO.dutch ? 'Nee' : 'No'}" />
+                            </h:selectOneMenu>
+                            <info:taalkeuze nl="(Default is Nee, dan ontvangt u hem via e-mail)" en="(Default is No, you will receive it via e-mail)"/>
+                        </div>
+                    </div>
+                    <h:commandButton styleClass="btn btn-primary wijzigbewaarbutton" action="#{gebruikersController.wijzigOfBewaar()}" value="#{gebruikersController.wijzigOfBewaarLabel}">
+                        <f:ajax execute="@form" render="@form"/>
+                    </h:commandButton>
+                    <h:commandLink styleClass="btn btn-default secondarybutton annuleerbutton#{gebruikersController.gebruikerWijzigen}" action="#{gebruikersController.executeAnnuleren()}" value="#{homePlateSessionTO.dutch ? 'Annuleren' : 'Cancel'}" immediate="true">
+                        <f:ajax render="@form"/>
+                    </h:commandLink>
+                </h:form>
+            </p>
+            <h2><info:taalkeuze nl="Wijzig wachtwoord" en="Change password"/></h2>
+            <p>
+                <h:form id="passwordForm" role="form">
+                    <div class="formulier">
+                        <h:panelGroup rendered="#{gebruikersController.wachtwoordWijzigen}">
+                            <div class="form-group">
+                                <label><info:taalkeuze nl="Oude Wachtwoord *" en="Old Password *"/></label>
+                                <h:inputSecret styleClass="form-control" value="#{gebruikersController.wachtwoord}" required="true" requiredMessage="#{homePlateSessionTO.dutch ? 'Oude wachtwoord is verplicht.' : 'Old password is required.'}"/>
+                            </div>
+                            <div class="form-group">
+                                <label><info:taalkeuze nl="Nieuwe Wachtwoord *" en="New Password *"/></label>
+                                <h:inputSecret styleClass="form-control" value="#{gebruikersController.wachtwoord1}" required="true" requiredMessage="#{homePlateSessionTO.dutch ? 'Nieuwe wachtwoord is verplicht.' : 'New password is required.'}"/>
+                            </div>
+                            <div class="form-group">
+                                <label><info:taalkeuze nl="Nieuwe Wachtwoord verificatie *" en="New Password verification *"/></label>
+                                <h:inputSecret styleClass="form-control" value="#{gebruikersController.wachtwoord2}" required="true" requiredMessage="#{homePlateSessionTO.dutch ? 'Nieuwe wachtwoord verificatie is verplicht.' : 'New password verification is required.'}"/>
+                            </div>
+                        </h:panelGroup>
+                    </div>
+                    <h:commandButton styleClass="btn btn-primary wijzigbewaarbutton" action="#{gebruikersController.wijzigOfBewaarWachtwoord()}" value="#{gebruikersController.wijzigOfBewaarWachtwoordLabel}">
+                        <f:ajax execute="@form" render="@form"/>
+                    </h:commandButton>
+                    <h:commandLink styleClass="btn btn-default secondarybutton annuleerbutton#{gebruikersController.wachtwoordWijzigen}" action="#{gebruikersController.executeAnnuleren()}" value="#{homePlateSessionTO.dutch ? 'Annuleren' : 'Cancel'}" immediate="true">
+                        <f:ajax render="@form"/>
+                    </h:commandLink>
+                </h:form>
+            </p>
+        </h:panelGroup>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{teamsController.init}" />
+    </f:metadata>
+
+    <h:form id="teamslist">
+        <ui:repeat var="typeTeam" value="#{teamsController.typeTeams}">
+            <div>
+                <h2>
+                    <info:taalkeuze nl="#{typeTeam.omschrijving} wedstrijden" en="#{typeTeam.omschrijvingEn} games"/>
+                </h2>
+                <p>
+                    <ui:repeat var="team" value="#{teamsController.ophalenTeamsPerSoort(typeTeam.code)}">
+                        <h:link outcome="/pages/wedstrijden.xhtml?team=#{team.volgnr}">
+                            <h:outputText value="#{team.naam}"/>
+                        </h:link>
+                        <br/>
+                    </ui:repeat>
+                    <h:link outcome="/pages/wedstrijden.xhtml?team=#{typeTeam.code}">
+                        <info:taalkeuze nl="Alle wedstrijden" en="All games"/>
+                    </h:link>
+                </p>
+            </div>
+        </ui:repeat>
+        <div class="info">
+            <h2>
+                <info:taalkeuze nl="Totaal" en="Total"/>
+            </h2>
+            <p>
+                <h:link outcome="/pages/wedstrijden.xhtml?team=ALL">
+                    <info:taalkeuze nl="Alle Honkbal- en Softbal wedstrijden" en="All Base- and Softball games"/>
+                </h:link>
+            </p>
+        </div>
+    </h:form>
+</ui:composition>

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/bsm/bsmplain.xhtml"
+      >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{homepageController.resetContext}" />
+        <f:event type="preRenderView" listener="#{infoController.executeOphalenInfoItem(param.infoitem)}" />
+        <f:event type="preRenderView" listener="#{navigatieController.setCurrentTabblad(0)}" />
+    </f:metadata>
+
+    <ui:define name="content">
+        <div class="infotitle">
+            <info:taalkeuze nl="Wijzig info" en="Edit info" />
+        </div>
+        <br/>
+        <h:form id="editInfoForm">
+            <div id="infoWidget#{infoController.infoItem.volgnr}NL" class="info">
+                <div class="title">
+                    <label>Titel NL: </label> <h:inputText size="100" value="#{infoController.infoItem.titel}"/>
+                </div>
+                <div class="content">
+                    <h1><label>Bericht</label></h1>
+                    <info:editor id="infoEditor" width="800" widgetVar="editorNL" height="600" value="#{infoController.infoItem.bericht}" />
+                    <br/>
+<!--                    
+                    <h:panelGroup rendered="#{(not empty item.pgaVolgnr and homePlateSessionTO.dutch)}">
+                        <h:link outcome="/pages/bsm/extraInfopagina" value="Lees verder ...">
+                            <f:param name="volgnr" value="#{infoController.infoItem.pgaVolgnr}"/>
+                            <f:param name="info" value="#{infoController.infoItem.volgnr}"/>
+                        </h:link>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{(not empty item.pgaEnVolgnr and not homePlateSessionTO.dutch)}">
+                        <h:link outcome="/pages/bsm/extraInfopagina" value="Read more ...">
+                            <f:param name="volgnr" value="#{infoController.infoItem.pgaEnVolgnr}"/>
+                            <f:param name="info" value="#{infoController.infoItem.volgnr}"/>
+                        </h:link>
+                    </h:panelGroup> -->
+                </div>
+            </div>
+<!--
+            <div id="infoWidget#{infoController.infoItem.volgnr}EN" class="info">
+                <div class="title">
+                    <label>Titel EN: </label> <h:inputText size="100" value="#{infoController.infoItem.titelEn}" />
+                </div>
+                <div class="content">
+                    <h1><label>Bericht:</label></h1>
+                    <info:editor width="800" widgetVar="editorEN" height="600" value="#{infoController.infoItem.berichtEn}" />
+                    
+                    <h:panelGroup rendered="#{(not empty item.pgaVolgnr and homePlateSessionTO.dutch)}">
+                        <h:link outcome="/pages/bsm/extraInfopagina" value="Lees verder ...">
+                            <f:param name="volgnr" value="#{infoController.infoItem.pgaVolgnr}"/>
+                            <f:param name="info" value="#{infoController.infoItem.volgnr}"/>
+                        </h:link>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{(not empty item.pgaEnVolgnr and not homePlateSessionTO.dutch)}">
+                        <h:link outcome="/pages/bsm/extraInfopagina" value="Read more ...">
+                            <f:param name="volgnr" value="#{infoController.infoItem.pgaEnVolgnr}"/>
+                            <f:param name="info" value="#{infoController.infoItem.volgnr}"/>
+                        </h:link>
+                    </h:panelGroup>
+                </div>
+            </div>
+-->
+<h:commandButton action="#{infoController.saveInfo}" value="Save"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

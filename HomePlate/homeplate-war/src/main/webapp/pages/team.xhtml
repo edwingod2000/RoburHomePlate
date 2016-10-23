@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/main.xhtml"
+                >
+
+    <f:metadata>
+        <f:viewParam name="team" value="#{teamsController.teamVolgnr}"/>
+        <f:event type="preRenderView" listener="#{teamsController.ophalenTeam}" />
+        <f:event type="preRenderView" listener="#{teamsController.begin}" />
+    </f:metadata>
+    
+    <ui:define name="content">
+        <h:form id="teamsForm">
+            <ui:remove> SponsorLogo + HomepageLink </ui:remove>
+            <div>
+                <h2>
+                    <h:outputText value="#{teamsController.team.naam}"/>  <h:outputText value="#{teamsController.team.soort}"/>
+                </h2>
+                <p>
+                    <h:panelGroup rendered="#{not empty teamsController.team.homepage}">
+                        <a target="_blank" href="#{teamsController.team.homepage}">
+                            <h:graphicImage library="bsm/img" name="teamHomepage.gif" style="border: '0'"/>
+                        </a>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{not empty teamsController.team.sponsorfoto}">
+                        <a target="_blank" href="#{teamsController.team.sponsorurl}">
+                            <h:graphicImage alt="#{teamsController.team.sponsornaam}" title="#{teamsController.team.sponsornaam}" value="#{teamsController.ophalenFotoString(teamsController.team.sponsorfoto)}"/>
+                        </a>
+                    </h:panelGroup>
+                </p>
+            </div>
+
+            <ui:remove> Teamfoto </ui:remove>
+            <h:panelGroup rendered="#{not empty teamsController.team.foto}">
+                <div>
+                    <h2>
+                        <info:taalkeuze nl="Teamfoto" en="Team picture" />
+                    </h2>
+                    <p>
+                        <h:graphicImage value="#{teamsController.ophalenFotoString(teamsController.team.foto)}" style="width: 500px"/>
+                    </p>
+                </div>
+            </h:panelGroup>
+            
+            <ui:remove> Teamleden </ui:remove>
+            <div>
+                <h2>
+                    <info:taalkeuze nl="Teamleden" en="Team members"/>
+                </h2>
+                <p>
+                    <div class="row header">
+                        <div class="col-md-2">
+                            <info:taalkeuze nl="Rugnr." en="Nr."/>
+                        </div>
+                        <div class="col-md-6">
+                            <info:taalkeuze nl="Naam" en="Name"/>
+                        </div>
+                        <div class="col-md-2">
+                            <info:taalkeuze nl="Positites" en="Positions"/>
+                        </div>
+                        <div class="col-md-2">
+                            <info:taalkeuze nl="Rel.nr." en="Rel#"/>
+                        </div>
+                    </div>
+                    <ui:repeat var="deelnemer" value="#{teamsController.deelnemers}">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h:outputText value="#{deelnemer.rugnummer}"/>
+                            </div>
+                            <div class="col-md-6">
+                                <h:commandLink id="kiesspeler" immediate="true" action="#{teamsController.toonSpeler(deelnemer)}" value="#{teamsController.getDisplayNaam(deelnemer.voornaam, deelnemer.tussenvoegsel, deelnemer.achternaam)}">
+                                    <f:ajax render=":panelspelersinfo"/>
+                                </h:commandLink>
+                            </div>
+                            <div class="col-md-2">
+                                <h:outputText value="#{deelnemer.posities}" rendered="#{deelnemer.sdsVolgnr.volgnr == 1}"/>
+                                <h:outputText value="#{deelnemer.sdsVolgnr.omschrijving}" rendered="#{deelnemer.sdsVolgnr.volgnr != 1}"/>
+                            </div>
+                            <div class="col-md-2">
+                                <h:outputText value="#{deelnemer.lidnummer}"/>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </p>
+            </div>
+
+            <ui:remove> Trainingstijden </ui:remove>
+            <h:panelGroup rendered="#{teamsController.showTrainingstijden}">
+                <div>
+                    <h2>
+                        <info:taalkeuze nl="Trainingstijden" en="Training moments"/>
+                    </h2>
+                    <p>
+                        <h:outputText escape="false" value="#{teamsController.trainingsTijd}"/>
+                    </p>
+                </div>
+            </h:panelGroup>
+
+            <ui:remove> Informatie </ui:remove>
+            <h:panelGroup rendered="#{not empty teamsController.team.vrijetekst}">
+                <div>
+                    <h2>
+                        <info:taalkeuze nl="Informatie" en="Information"/>
+                    </h2>
+                    <p>
+                        <h:outputText escape="false" value="#{teamsController.filterString(teamsController.team.vrijetekst)}"/>
+                    </p>
+                </div>
+            </h:panelGroup>
+            
+            <ui:remove> Teambeheerder(s) </ui:remove>
+            <div>
+                <h2>
+                    <info:taalkeuze nl="Beheerder(s) Team LineUp" en="Maintenance Team LineUp"/>
+                </h2>
+                <p>
+                    <h:outputText value="#{teamsController.teamBeheerder.displayNaam}" rendered="#{not empty teamsController.teamBeheerder}"/>
+                </p>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <table>
+        <tr>
+            <th>Verwijderen:</th>
+            <td><h:outputText value="#{documentController.selectedBestand.naam}"/></td>
+        </tr>
+        <tr>
+            <th>Datum aangemaakt:</th>
+            <td>
+                <h:outputText value="#{documentController.selectedBestand.datumAangemaakt}">
+                    <f:convertDateTime pattern="dd-MM-yyyy hh:mm" timeZone="#{homePlateSessionTO.timezone}" />
+                </h:outputText>
+            </td>
+        </tr>
+        <tr>
+            <th>Ge-upload door:</th>
+            <td><h:outputText value="#{documentController.selectedBestand.gbrVolgnr.displayNaam}"/></td>
+        </tr>
+        <tr>
+            <th>Gepubliceerd:</th>
+            <td><h:selectBooleanCheckbox disabled="true" value="#{documentController.selectedBestand.gepubliceerd}" /></td>
+        </tr>
+        <tr>
+            <th>Omschrijving:</th>
+            <td><h:outputText value="#{documentController.selectedBestand.omschrijving}" /></td>
+        </tr>
+    </table>
+    <br/>
+    <br/>
+        
+    <p:commandButton styleClass="btn btn-primary" action="#{documentController.verwijderBestand}" oncomplete="PF('dialogBestandVerwijderen').hide();" value="Verwijder"/>
+    <p:commandButton styleClass="btn btn-default" immediate="true" value="Annuleren" oncomplete="PF('dialogBestandVerwijderen').hide();"/>
+
+</ui:composition>

@@ -1,0 +1,299 @@
+/* Stylesheet Hoofd Navigatie. */
+
+.ddsmoothmenu {
+    display: block;
+    z-index: 100;
+    font-weight: normal;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.ddsmoothmenu ul {
+    z-index: 100;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* Top level list items. */
+.ddsmoothmenu ul li {
+    position: relative;
+    display: inline;
+    float: left;
+}
+
+/* Top level menu link items style. */
+.ddsmoothmenu ul li a {
+    display: block;
+    background: inherit; /* Background of menu items (default state). */
+    padding: 0 15px;
+    text-decoration: none;
+    line-height: 20px;
+}
+
+.ddsmoothmenu ul li li:first-child {
+    margin-top: 20px;
+}
+
+.ddsmoothmenu ul li li {
+}
+
+* html .ddsmoothmenu ul li a {
+/* IE6 hack to get sub menu links to behave correctly. */
+    display: inline-block;
+}
+
+.ddsmoothmenu ul li a:link, .ddsmoothmenu ul li a:visited {
+    color: white;
+}
+
+/* CSS class that's dynamically added to the currently active menu items' LI A element. */
+.ddsmoothmenu ul li a.selected {
+    background: #1c7393;
+    color: white;
+}
+
+/* Background of menu items during onmouseover (hover state). */
+.ddsmoothmenu ul li a:hover {
+    background: white;
+    background: rgba(255, 255, 255, .5);
+    color: black;
+}
+
+/* 1st sub level menu. */
+.ddsmoothmenu ul li ul {
+    position: absolute;
+    left: 0; /* Collapse all sub menus to begin with. */
+    display: none;
+    visibility: hidden;
+}
+
+/* Sub level menu list items (undo style from Top level List Items). */
+.ddsmoothmenu ul li ul li {
+    display: list-item;
+    float: none;
+}
+
+/* All subsequent sub menu levels vertical offset after 1st level sub menu. */
+.ddsmoothmenu ul li ul li ul {
+    top: 0;
+}
+
+.ddsmoothmenu ul ul {
+    padding: 0;
+    width: 210px !important; /* Width of sub menus. */
+    -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, .3);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, .3);
+
+    background-color: #1c7393;
+}
+
+.ddsmoothmenu ul ul ul {
+    opacity: 1;
+}
+
+/* Sub level menu links style. */
+.ddsmoothmenu ul li ul li a {
+    font-weight: normal;
+    padding: 5px 15px;
+    margin: 0;
+    line-height: normal;
+}
+
+/* Holly Hack for IE \*/
+* html .ddsmoothmenu {
+    height: 1%;
+}
+
+/*Holly Hack for IE7 and below*/
+
+/* ######### CSS classes applied to down and right arrow images  ######### */
+
+.downarrowclass {
+    position: absolute;
+    top: 12px;
+    right: 7px;
+}
+
+.rightarrowclass {
+    position: absolute;
+    top: 6px;
+    right: 5px;
+}
+
+.ddsmoothmenu hr {
+    margin: 5px;
+}
+
+.inlineaccesskey {
+    text-decoration: underline;
+}
+
+/* Access key rechts uitlijnen. */
+.accesskey {
+    float: right;
+    font-family: Courier New, Courier, monospace;
+}
+
+/* BreadCrumbs. */
+
+#breadcrumb {
+    padding-top: 42px;
+    font-weight: normal;
+    padding-left: 30px;
+}
+
+#breadcrumb ul {
+    margin: 0;
+    padding: 0;
+}
+
+#breadcrumb li {
+    color: #ffef98;
+    display: inline;
+    margin-right: 10px
+}
+
+#breadcrumb li:after {
+    font-size: 8px;
+    content: '\00a0\00a0\00a0>';
+}
+
+#breadcrumb li:last-child:after {
+    content: '';
+}
+
+/* Tabbladen. */
+.tabblad {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background: none;
+    height: 32px;
+}
+
+.tabblad li {
+    color: black;
+    background-color: #FFFFFF;
+    border: 1px solid #CC0000;
+    border-bottom-color: #CC0000;
+    display: block;
+    height: 25px;
+    line-height: 30px;
+    margin: 5px 0 0 0;
+    padding: 0 15px;
+    float: left;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    -moz-border-radius-topright: 8px;
+    -moz-border-radius-topleft: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+}
+
+.tabblad li a {
+    color: black;
+    text-decoration: none;
+}
+
+.tabblad li:hover {
+    color: #FFFFFF;
+/*    background: rgba(32, 32, 32, 0.7); */
+    background-color: #CC0000;
+    border: 1px solid #CC0000;
+    border-bottom-color: #CC0000; 
+}
+
+.tabblad li:hover a {
+    color: #FFFFFF;
+}
+
+.tabblad li.active {
+    color: white;
+    position: relative;
+    top: 2px;
+    /* background: rgba(32, 32, 32, 0.7); */
+    background-color: #CC0000;
+    border: 0px solid #CC0000;
+    border-bottom-color: #CC0000;
+    margin: 0;
+    height: 30px;
+}
+
+.tabblad li.active a {
+    /* Normale link kleur. */
+    color: white;
+    font-weight: bold;
+}
+
+/* Toplinks. */
+.toplinks {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background: none;
+    height: 32px;
+    left: -8px;
+    top: -242px;
+    background: rgba(255, 255, 255, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.toplinks ul {
+    left: -210px;
+}
+
+.toplinks li {
+    color: black;
+    background-color: #FFFFFF;
+    border: 1px solid #202020;
+    border-bottom-color: #202020;
+    display: block;
+    height: 25px;
+    line-height: 30px;
+    margin: 5px 0 0 0;
+    padding: 0 15px;
+    float: right;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -moz-border-radius-bottomleft: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+}
+
+.toplinks li a {
+    color: black;
+    text-decoration: none;
+}
+
+.toplinks li:hover {
+    color: #FFFFFF;
+    background-color: #202020;
+    border: 1px solid #202020;
+    border-bottom-color: #202020;
+}
+
+.toplinks li:hover a {
+    color: #FFFFFF;
+}
+
+.toplinks li.active {
+    color: white;
+    position: relative;
+    top: 1px;
+    background-color: #202020;
+    border: 1px solid #202020;
+    border-bottom-color: #202020;
+    margin: 0;
+    height: 30px;
+}
+
+.toplinks li.active a {
+    /* Normale link kleur. */
+    color: white;
+    font-weight: bold;
+}

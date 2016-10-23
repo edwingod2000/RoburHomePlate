@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <div>
+        <h2>
+             <h:outputText value="#{teamsController.getDisplayNaam(teamsController.deelnemer.voornaam, teamsController.deelnemer.tussenvoegsel, teamsController.deelnemer.achternaam)}"/>
+        </h2>
+        <p>
+            <h:panelGroup rendered="#{not empty teamsController.deelnemer.foto}">
+                <h:graphicImage style="width: 170px;" value="#{teamsController.ophalenFotoString(teamsController.deelnemer.foto)}" styleClass="img-thumbnail"/>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{empty teamsController.deelnemer.foto}">
+                <h:graphicImage style="width: 170px;" library="bsm/img" name="nopicture.gif" styleClass="img-thumbnail"/>
+            </h:panelGroup>
+            
+            <div class="row">
+                <div class="col-md-5">
+                    <info:taalkeuze nl="Naam" en="Name"/>
+                </div>
+                <div class="col-md-7">
+                    <h:outputText value="#{teamsController.getDisplayNaam(teamsController.deelnemer.voornaam, teamsController.deelnemer.tussenvoegsel, teamsController.deelnemer.achternaam)}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <info:taalkeuze nl="Positites" en="Positions"/>
+                </div>
+                <div class="col-md-7">
+                    <h:outputText value="#{teamsController.deelnemer.posities}" rendered="#{teamsController.deelnemer.sdsVolgnr.volgnr == 1}"/>
+                    <h:outputText value="#{teamsController.deelnemer.sdsVolgnr.omschrijving}" rendered="#{teamsController.deelnemer.sdsVolgnr.volgnr != 1}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <info:taalkeuze nl="Leeftijd" en="Age"/>
+                </div>
+                <div class="col-md-7">
+                    <h:outputText value="#{teamsController.leeftijd}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <info:taalkeuze nl="Rugnr." en="Nr."/>
+                </div>
+                <div class="col-md-7">
+                    <h:outputText value="#{teamsController.deelnemer.rugnummer}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <info:taalkeuze nl="Lidnr." en="Member#"/>
+                </div>
+                <div class="col-md-7">
+                    <h:outputText value="#{teamsController.deelnemer.lidnummer}"/>
+                </div>
+            </div>
+        </p>
+    </div>
+
+</ui:composition>

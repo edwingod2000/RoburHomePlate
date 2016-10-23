@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.robur58</groupId>
+        <artifactId>homeplate</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>homeplate-ear</artifactId>
+    <packaging>ear</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <modules>
+                        <webModule>
+                            <groupId>com.robur58</groupId>
+                            <artifactId>homeplate-war</artifactId>
+                            <contextRoot>/HomePlate-war</contextRoot>
+                        </webModule>
+                        <ejbModule>
+                            <groupId>com.robur58</groupId>
+                            <artifactId>homeplate-ejb</artifactId>
+                        </ejbModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.robur58</groupId>
+            <artifactId>homeplate-ejb</artifactId>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>com.robur58</groupId>
+            <artifactId>homeplate-war</artifactId>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+</project>

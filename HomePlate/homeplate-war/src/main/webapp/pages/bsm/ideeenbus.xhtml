@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/bsm/bsmmain.xhtml"
+      >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{homepageController.resetContext}" />
+        <f:event type="preRenderView" listener="#{navigatieController.setCurrentTabblad(8)}" />        
+        <f:event type="preRenderView" listener="#{ideeenController.verwijderContextItems}" />
+    </f:metadata>
+
+    <ui:define name="content">
+        <div class="info">
+            <div class="title"><info:taalkeuze nl="Ideeenbus" en="Ideabox"/></div>
+            <div class="content">
+                <h:form id="ideeenForm">
+                    <h:panelGrid columns="2">
+                        <info:taalkeuze nl="Naam" en="Name"/>
+                        <h:inputText value="#{ideeenController.ideeInfo.naam}"/>
+                        <info:taalkeuze nl="Email" en="E-mail"/>
+                        <h:inputText value="#{ideeenController.ideeInfo.email}"/>
+                        <info:taalkeuze nl="Idee" en="Idea" styleClass="required"/>
+                        <h:inputTextarea id="idee" required="true" value="#{ideeenController.ideeInfo.opmerking}" cols="50" rows="10" requiredMessage="Idee moet ingevuld worden/Idea has to be filled in."/>
+                        <h:panelGroup>
+                            <h:commandButton action="#{ideeenController.opslaan}" value="Verstuur" rendered="#{ideeenController.homePlateSessionTO.dutch}"/>
+                            <h:commandButton action="#{ideeenController.opslaan}" value="Send" rendered="#{!ideeenController.homePlateSessionTO.dutch}"/>
+                        </h:panelGroup>
+                    </h:panelGrid>
+                    <br/>
+                    <h:messages/>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

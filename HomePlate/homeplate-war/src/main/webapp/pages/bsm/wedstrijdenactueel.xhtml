@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <div class="info">
+        <div class="title">
+            <info:taalkeuze nl="Wedstrijden" en="Games" />
+            <a class="toggellink collapsed" id="showWedstrijdenActueelToggle">Toggle</a>
+        </div>
+        <div class="content">
+            <div id="actuelewedstrijden">
+                <h:panelGroup rendered="#{empty homepageController.wedstrijdDatums}">
+                    <info:taalkeuze nl="Geen actuele wedstrijden" en="No upcomming games"/>
+                </h:panelGroup>
+
+                <table id="wedstrijdenactueel" class="wedstrijdactueel">
+                    <ui:repeat var="datum" value="#{homepageController.wedstrijdDatums}">
+                        <tr>
+                            <td colspan="8">
+                                <div class="wedstrijddatum">
+                                    <h:outputText value="#{datum}" rendered="#{homePlateSessionTO.dutch}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy EEEE" locale="NL_nl" timeZone="#{homePlateSessionTO.timezone}" />
+                                    </h:outputText>
+                                    <h:outputText value="#{datum}" rendered="#{not homePlateSessionTO.dutch}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy EEEE" timeZone="#{homePlateSessionTO.timezone}"/>
+                                    </h:outputText>
+                                </div>
+                            </td>
+                        </tr>
+                        <ui:repeat var="soort" value="#{homepageController.wedstrijdSoorten(datum)}">
+                            <tr>
+                                <td colspan="8">
+                                    <div class="wedstrijdsoort">
+                                        <h:panelGroup rendered="#{soort == 'HB' || soort == 'DEMOHB'}">
+                                            <info:taalkeuze nl="Honkbal" en="Baseball"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{soort == 'SB'|| soort == 'DEMOSB'}">
+                                            <info:taalkeuze nl="Softbal" en="Softball"/>
+                                        </h:panelGroup>
+                                    </div>
+                                </td>
+                            </tr>
+                            <ui:repeat var="wedstrijd" value="#{homepageController.wedstrijdenPerSoort(datum,soort)}">
+                                <tr>
+                                    <td>
+                                        <h:panelGroup rendered="#{not empty wedstrijd.afgelast and wedstrijd.afgelast == 'J'}">
+                                            <del>
+                                                <h:outputText value="#{wedstrijd.tijdstip}"/>
+                                            </del>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{empty wedstrijd.afgelast or wedstrijd.afgelast != 'J'}">
+                                              <h:outputText value="#{wedstrijd.tijdstip}"/>
+                                        </h:panelGroup>
+                                    </td>
+                                    <td valign="TOP">
+                                        <h:panelGroup rendered="#{wedstrijd.afgelast == 'G'}">
+                                            <h:link title="Gewijzigd!">
+                                                <h:graphicImage library="bsm/img" name="gewijzigd.gif" style="border: 0"/>
+                                            </h:link>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{wedstrijd.afgelast == 'J'}">
+                                            <h:link title="Afgelast!">
+                                                <h:graphicImage library="bsm/img" name="afgelast.gif" style="border: 0"/>
+                                            </h:link>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{wedstrijd.afgelast == 'D'}">
+                                            <h:link title="Definitief!">
+                                                <h:graphicImage library="bsm/img" name="definitief.gif" style="border: 0"/>
+                                            </h:link>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{wedstrijd.afgelast == 'V'}">
+                                            <h:link title="Voorlopig!">
+                                                <h:graphicImage library="bsm/img" name="voorlopig.gif" style="border: 0"/>
+                                            </h:link>
+                                        </h:panelGroup>
+                                    </td>
+
+                                    <td>
+                                        <h:outputText value="#{wedstrijd.veldOmschrijving}"/>
+                                    </td>
+                                    <td>
+                                        <h:outputText value="#{wedstrijd.wedstrijdNummer}"/>
+                                    </td>
+                                    <td>
+                                        <h:outputText value="#{wedstrijd.displayTeamThuis}"/>
+                                    </td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>
+                                        <h:outputText value="#{wedstrijd.displayTeamUit}"/>
+                                    </td>
+                                    <td height="24" valign="TOP">
+                                        <h:link title="#{wedstrijd.displayInfo}" rendered="#{not empty wedstrijd.displayInfo}">
+                                            <h:graphicImage library="bsm/img" name="extrainfo.gif" style="border: 0px"/>
+                                        </h:link>
+                                    </td>
+                                </tr>
+                            </ui:repeat>
+                        </ui:repeat>
+                        <tr><td colspan="8"><br/></td></tr>
+                    </ui:repeat>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</ui:composition>

@@ -1,0 +1,41 @@
+<!DOCTYPE table SYSTEM "/resources/entities.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:composite="http://java.sun.com/jsf/composite"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/mainplain.xhtml">
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{infoController.ophalenInfoPagina(param.volgnr)}" />        
+    </f:metadata>
+    
+    <ui:define name="content">
+        <div class="teruglink">
+            <a href="#{infoController.extraPaginaTerugUrl(param.info)}">
+                <h:outputText value="#{infoController.extraPaginaTerugTekst(param.info)}"/>
+            </a>
+        </div>
+        <div class="info">
+            <div class="title">
+                <label><h:outputText value="#{infoController.extraPaginaTitel(param.info)}"/></label>
+            </div>
+            <div class="content">
+                <label><h:outputText value="#{infoController.infoPagina.inhoud}" escape="false"/></label>
+            </div>
+        </div>
+        <h:panelGroup rendered="#{empty infoController.infoPagina}">
+            <br/>
+            <div class="info">
+                <div class="title">
+                    Sorry!
+                </div>
+                <div class="content">
+                    <info:taalkeuze nl="Geen informatie gevonden." en="No information found." />
+                </div>
+            </div>
+        </h:panelGroup>
+    </ui:define>
+    
+</ui:composition>

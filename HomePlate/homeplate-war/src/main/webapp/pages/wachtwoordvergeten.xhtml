@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/main.xhtml"
+      >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{registreerController.initVelden()}" />
+        <f:event type="preRenderView" listener="#{homePlateSessionTO.setShowContextWedstrijdenActueel(false)}" />
+        <f:event type="preRenderView" listener="#{navigatieController.setCurrentTabblad(9)}" />
+    </f:metadata>
+
+    <ui:define name="content">
+        <div>
+            <h2>
+                <info:taalkeuze nl="Wachtwoord vergeten?" en="Forgot Password?"/>
+            </h2>
+            <p>
+                <h:form id="wachtwoordVergetenForm">
+                    <div style="text-align: left">
+                        <b><info:taalkeuze en="Username *" nl="Gebruikersnaam *" /></b><br/>
+                        <h:inputText size="20" maxlength="50" value="#{registreerController.gebruikersnaam}" required="false" requiredMessage="Gebruikersnaam is verplicht." /><br/>
+                        <b><info:taalkeuze en="E-Mail *" nl="E-Mail *" /></b><br/>
+                        <h:inputText size="20" maxlength="50" value="#{registreerController.email}"  required="false" requiredMessage="Email is verplicht." /><br/><br/>
+                        <h:commandButton styleClass="btn btn-primary" value="Verzenden" action="#{registreerController.executeVerwerkWachtwoordVergeten}" /><br/>
+                        <br/>
+                        <h:messages/>
+                    </div>
+                </h:form>
+            </p>
+        </div>
+    </ui:define>
+</ui:composition>

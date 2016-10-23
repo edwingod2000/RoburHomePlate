@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <h:panelGroup rendered="#{empty securityController.gebruiker}">
+        <table border="0" align="right" width="100%" id="searchbox">
+            <tr height="20px">
+                <td>&#x00a0;</td>
+                <td valign="top" align="right">
+                    <info:taalkeuze nl="Welkom  op de Robur '58 HomePlate" en="Welcome on the Robur '58 HomePlate"/>
+                </td>
+                <td>&#x00a0;</td>
+            </tr>
+        </table>
+    </h:panelGroup>
+    <h:panelGroup rendered="#{not empty securityController.gebruiker}">
+        <table border="0" align="right" width="100%" id="searchbox">
+            <tr height="20px">
+                <td>&#x00a0;</td>
+                <td valign="top" align="right">
+                    <h:form id="uitloggenForm">
+                        <info:taalkeuze nl="Welkom" en="Welcome"/> #{securityController.gebruiker.displayNaam} (<u><h:commandLink action="#{securityController.executeUitloggen}"><info:taalkeuze nl="Uitloggen" en="Log off" /></h:commandLink></u>)
+                        &nbsp;<h:link outcome="/pages/bsm/gebruikerinstellingen.xhtml"><span class="gebruikersettings"></span></h:link>
+                    </h:form>
+                </td>
+                <td>&#x00a0;</td>
+            </tr>
+        </table>
+    </h:panelGroup>
+</ui:composition>

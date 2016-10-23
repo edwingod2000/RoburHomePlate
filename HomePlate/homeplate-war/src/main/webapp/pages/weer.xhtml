@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <div id="weerWidget">
+        <h2>
+            <info:taalkeuze nl="Weer" en="Weather"/>
+        </h2>
+        <p class="content weer">
+            <a href="http://www.weer.nl/" style="padding:0;background:none" target="_blank" title="Your weather service">
+                <img src="http://gratis.weer.nl/meteo/hptool/logo_weer_nl.png" alt="" width="120" height="32" border="0" style="display:block;" />
+            </a>
+            <div style="background-color:#FFFFFF;color:#000000;font-family:Verdana,Arial,Tahoma,Times New Roman;font-weight:bold;font-size:10px;width:120px;text-align:center;">
+                <a href="http://www.weer.nl/nl/home/weer/wereldweer/actueel-en-verwacht-weer/stad/31X4403/apeldoorn.html" target="_blank" style="color:#000000;font-family:Verdana,Arial,Tahoma,Times New Roman;font-weight:bold;font-size:10px;padding:0;background:none" title="Detailed weather forecast for Weer Apeldoorn">
+                    Weer Apeldoorn
+                </a>
+            </div>
+            <iframe width="120" height="127" scrolling="no" frameborder="0" src="#{homepageController.weerUrl}">
+            </iframe>
+            <div style="height:14px;width:120px;text-align:center;background-color:#ffffff;">
+                <a href="http://www.weer.nl/" target="_blank" style="background:none;padding:0;text-decoration:none;color:#FFFFFF;font-family:Verdana,Arial,Tahoma,Times New Roman;font-weight:normal;font-size:10px" title="Latest weather observations and 14 day forecasts for over 2 MM locations worldwide">
+                    &copy; MeteoConsult
+                </a>
+            </div>
+        </p>
+    </div>
+
+</ui:composition>

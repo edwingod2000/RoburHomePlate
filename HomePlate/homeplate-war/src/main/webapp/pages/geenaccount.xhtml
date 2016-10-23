@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/main.xhtml"
+      >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{homePlateSessionTO.setShowContextLogin(false)}" />
+        <f:event type="preRenderView" listener="#{homePlateSessionTO.setShowContextWedstrijdenActueel(false)}" />
+        <f:event type="preRenderView" listener="#{navigatieController.setCurrentTabblad(9)}" />
+    </f:metadata>
+    
+    <ui:define name="content">
+        <div>
+            <h:form id="geenAccountForm">
+                <h2>
+                    <info:taalkeuze nl="Nieuw account aanmaken" en="Create new account"/>
+                </h2>
+                <p>
+                    <div style="text-align:left">
+                        <b><info:taalkeuze en="Username" nl="Gebruikersnaam *" /></b><br/>
+                        <h:inputText id="registreergebruikersnaam" size="20" required="false" styleClass="required" requiredMessage="'Gebruikersnaam' is verplicht!" maxlength="50" value="#{registreerController.gebruikersnaam}"/><br/>
+                        <p:message for="registreergebruikersnaam"/>
+                        <b><info:taalkeuze en="Firstname" nl="Voornaam *" /></b><br/>
+                        <h:inputText id="registreervoornaam" size="20" maxlength="50" styleClass="required" required="false" requiredMessage="'Voornaam' is verplicht!" value="#{registreerController.voornaam}"/><br/>
+                        <b><info:taalkeuze en="Middlename" nl="Tussenvoegsel" /></b><br/>
+                        <h:inputText id="registreertussenvoegsel" size="20" maxlength="50" value="#{registreerController.tussenvoegsel}"/><br/>
+                        <b><info:taalkeuze en="Lastname" nl="Achternaam *" /></b><br/>
+                        <h:inputText id="registreerachternaam" size="20" maxlength="50" styleClass="required" required="false" requiredMessage="'Achternaam' is verplicht" value="#{registreerController.achternaam}"/><br/>
+                        <b><info:taalkeuze en="Birthdate" nl="Geboortedatum" /></b><br/>
+                        <h:inputText id="registreergeboortedatum" size="10" label="Geboortedatum" converter="datumConverter" maxlength="10" value="#{registreerController.geboortedatum}"/><br/>
+                        <b><info:taalkeuze en="Member no." nl="Lidnummer" /></b><br/>
+                        <h:inputText id="registreerlidnummer" size="10" label="Lidnummer" styleClass="required" required="false" requiredMessage="Lidnummer is verplicht i.v.m. LedenLogin" maxlength="10" value="#{registreerController.lidnummer}"/><br/>
+                        <b><info:taalkeuze en="E-Mail" nl="E-Mail *" /></b><br/>
+                        <h:inputText id="registreeremail" size="40" maxlength="50" styleClass="required" label="E-Mail" required="false" requiredMessage="'E-mail' is verplicht!" value="#{registreerController.email}"/><br/>
+                        <b><info:taalkeuze en="E-Mail again" nl="E-Mail opnieuw *" /></b><br/>
+                        <h:inputText id="registreeremail2" size="40" maxlength="50" styleClass="required" label="E-Mail opnieuw" required="false" requiredMessage="'Email opnieuw' is verplicht!" value="#{registreerController.email2}"/><br/>
+                        <br/>
+
+                        <h:commandButton styleClass="btn btn-primary" value="Registreer" action="#{registreerController.executeRegistreer}" rendered="#{homePlateSessionTO.dutch}" /><br/>
+                        <h:commandButton styleClass="btn btn-primary" value="Register" action="#{registreerController.executeRegistreer}" rendered="#{not homePlateSessionTO.dutch}" /><br/>
+                        <p>
+                            <info:taalkeuze nl="Door middel van het geven van een account aan alle leden is het mogelijk om de leden sneller en beter te informeren over zaken die er spelen. Daarnaast is het dan mogeijk om via deze website informatie te bieden die voor niet leden niet toegankelijk hoeven te zijn."
+                                            en="By giving an account to members it will be possible to inform members quicker and better. Also information can be given which is not for not members." />
+                        </p>
+                        <p>
+                            <info:taalkeuze nl="Na registratie zal alleen accountinformatie zichtbaar zijn. Er zal eerst een controle plaatsvinden of u lid bent voordat u toegang krijgt tot de leden-informatie."
+                                            en="After registration only accountinfo will be visible. A validation will be done to check if you are a member before you will have access to member-information. " />
+                        </p>
+                        <br/>
+                    </div>
+                </p>
+            </h:form>
+        </div>        
+    </ui:define>
+</ui:composition>

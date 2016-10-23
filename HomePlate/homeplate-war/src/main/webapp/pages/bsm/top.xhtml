@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <h:form id="topForm">
+        <table border="0" width="100%" valign="BOTTOM">
+            <tr>
+                <td>
+                    <table height="23px" border="0" align="RIGHT">
+                        <tr>
+                            <h:panelGroup rendered="#{homePlateSessionTO.dutch}">
+                                <td><h:link outcome="/pages/bsm/wijzigingen.xhtml">Wijzigingen</h:link></td>
+                                <td height="100%">&#x00a0;<a target="_NEW" href="http://homeplate.robur58.com/pls/bsm/bsm_pck_autorisatie.inlogscherm?p_taal=NL">Beheer</a></td>
+                                <td>&#x00a0;<h:link outcome="/pages/bsm/infopagina.faces?typeInfo=72">Contact</h:link></td>
+                                <td>&#x00a0;<h:commandLink action="#{homePlateSessionTO.switchLanguage}"><img alt="Switch to English" title="Switch to English" border="0" src="../../resources/bsm/img/flag_uk.gif"/></h:commandLink></td>
+                            </h:panelGroup>
+                        </tr>
+                        <tr>
+                            <h:panelGroup rendered="#{not homePlateSessionTO.dutch}">
+                                <td><h:link outcome="/pages/bsm/wijzigingen.xhtml">Changes</h:link></td>
+                                <td height="100%">&#x00a0;<a target="_NEW" href="http://homeplate.robur58.com/pls/bsm/bsm_pck_autorisatie.inlogscherm?p_taal=NL">Administration</a></td>
+                                <td>&#x00a0;<h:link outcome="/pages/bsm/infopagina.faces?typeInfo=72">Contact</h:link></td>
+                                <td>&#x00a0;<h:commandLink action="#{homePlateSessionTO.switchLanguage}"><img alt="Kies Nederlands" title="Kies Nederlands" border="0" src="../../resources/bsm/img/flag_nl.gif"/></h:commandLink></td>
+                            </h:panelGroup>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </h:form>
+
+</ui:composition>

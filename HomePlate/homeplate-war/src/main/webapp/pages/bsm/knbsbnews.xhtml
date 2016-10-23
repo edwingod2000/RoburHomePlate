@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <div id="knbsbnewsWidget" class="info">
+        <div class="title">
+            <info:taalkeuze nl="KNBSB nieuws" en="KNBSB news"/>
+        </div>
+        <div class="content">
+            <table class="highlights" cellspacing="0" cellpadding="0" width="100%">
+                <ui:repeat var="newsItem" value="#{homepageController.homePlateSessionTO.knbsbNews}">
+                    <tr>
+                        <td colspan="2">
+                            <b>
+                                <a target="_new" href="#{newsItem.link}">
+                                    
+                                    <h:graphicImage library="bsm/img" name="arrow.gif" alt="arrow"/>
+                                    &#x00a0;
+                                    <h:outputText value="#{newsItem.title}" escape="true"/>
+                                    <br/>
+                                    &#x00a0;&#x00a0;
+                                    <i>
+                                        (<h:outputText value="#{newsItem.date}">
+                                               <f:convertDateTime pattern="dd-MM-yyyy" />
+                                        </h:outputText>)
+                                    </i>
+                                </a>
+                            </b>
+                        </td>
+                    </tr>
+                </ui:repeat>
+            </table>
+        </div>
+    </div>
+
+</ui:composition>

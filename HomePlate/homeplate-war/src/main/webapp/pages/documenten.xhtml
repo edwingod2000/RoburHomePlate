@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/mainplain.xhtml"
+                >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{homePlateSessionTO.setShowContextWedstrijdenActueel(false)}" />
+        <f:event type="preRenderView" listener="#{navigatieController.setCurrentTabblad(10)}" />
+        <f:event type="preRenderView" listener="#{documentController.preRender()}" />
+    </f:metadata>
+
+    <ui:define name="content">
+        <h:panelGroup rendered="#{not empty securityController.gebruiker and documentController.magDocumentenZien}">
+            <h:form id="documentForm" enctype="multipart/form-data" prependId="false">
+                <!--p:messages showDetail="false"/-->
+                <p:growl id="uploadMessages" showSummary="true" showDetail="true"/>
+                <h:panelGroup rendered="#{not empty documentController.selectedFolder and documentController.wijzigMode}">
+                    <p:fileUpload id="uploadbestandComponent" invalidSizeMessage="Bestand is te groot. Maximaal 10MB!" update="@form" sizeLimit="10485760" showButtons="false" fileUploadListener="#{documentController.handleFileUpload}" invalidFileMessage="Verkeerd bestandstype!" immediate="true" label="Upload bestand" auto="true"/>
+                    <br/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{empty documentController.selectedFolder and documentController.wijzigMode}">
+                    Om een bestand te kunnen uploaden moet er eerst een folder geselecteerd worden.
+                </h:panelGroup>
+
+                <div class="mijndocumenten">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h:panelGroup rendered="#{documentController.magWijzigen()}">
+                                <h:commandLink styleClass="btn btn-primary" actionListener="#{documentController.gaNaarWijzigMode}" rendered="#{not documentController.wijzigMode and documentController.magWijzigen()}" id="changeWijzigMode" value="Start Wijzigmode">
+                                    <!--<f:ajax render="@form :dialogen"/>-->
+                                </h:commandLink>
+                                <h:commandLink styleClass="btn btn-primary" actionListener="#{documentController.gaNaarNietWijzigMode}" rendered="#{documentController.wijzigMode and documentController.magWijzigen()}" id="stopChangeWijzigMode" value="Stop Wijzigmode">
+                                    <!--<f:ajax render="@form :dialogen"/>-->
+                                </h:commandLink>
+                                <h:commandLink styleClass="btn" rendered="#{documentController.wijzigMode and documentController.selectedFolder.mdsVolgnr == null}" id="newFolder" value="Nieuwe Map" onclick="dialogNieuweMap.show();">
+                                    <!--<f:ajax render="@form :dialogen"/>-->
+                                </h:commandLink>
+                            </h:panelGroup>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h2>Mappen</h2>  
+                            <ul class="folders">
+                                <ui:repeat var="rootFolder" value="#{documentController.ophalenRootFolders()}">
+                                    <li>
+                                        <div class="folder#{documentController.toonFolderOpen(rootFolder)}">
+                                            <h:commandLink immediate="true" action="#{documentController.selectFolder(rootFolder)}">
+                                                <h:panelGroup styleClass="glyphicon glyphicon-folder-close toonfolder#{not documentController.toonImageOpenFolder(rootFolder)}" />
+                                                <h:panelGroup styleClass="glyphicon glyphicon-folder-open toonfolder#{documentController.toonImageOpenFolder(rootFolder)}" />
+                                                <h:graphicImage alt="Gepubliceerd" title="Gepubliceerd" styleClass="folderpublished" library="images" name="published.png" rendered="#{documentController.wijzigMode and rootFolder.gepubliceerd}"/>
+                                                <!--<f:ajax execute="@form" render="@form"/>-->
+                                            </h:commandLink>
+                                            <h:outputText value="#{rootFolder.naam}"/>
+                                        </div>
+                                        <h:panelGroup rendered="#{not empty documentController.ophalenSubFolders(rootFolder.volgnr)}">
+                                            <ul>
+                                                <ui:repeat var="subFolder" value="#{documentController.ophalenSubFolders(rootFolder.volgnr)}"> 
+                                                    <div class="folder#{documentController.toonFolderOpen(subFolder)}">
+                                                        <h:commandLink immediate="true" action="#{documentController.selectFolder(subFolder)}">
+                                                            <h:panelGroup styleClass="glyphicon glyphicon-folder-close" rendered="#{not documentController.toonImageOpenFolder(subFolder)}"/>
+                                                            <h:panelGroup styleClass="glyphicon glyphicon-folder-open" rendered="#{documentController.toonImageOpenFolder(subFolder)}"/>
+                                                            <h:graphicImage alt="Gepubliceerd" title="Gepubliceerd" styleClass="folderpublished" library="images" name="published.png" rendered="#{documentController.wijzigMode and subFolder.gepubliceerd}"/>
+                                                            <!--<f:ajax execute="@form" render="@form"/>-->
+                                                        </h:commandLink>
+                                                        <h:outputText value="#{subFolder.naam}"/>
+                                                    </div>
+                                                </ui:repeat>
+                                            </ul>
+                                        </h:panelGroup>
+                                    </li>
+                                </ui:repeat>
+                            </ul>
+                        </div>
+                        <div class="col-md-8">
+                            <h2>Bestanden</h2> 
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <ol class="breadcrumb">
+                                        <li>
+                                            <span class="glyphicon glyphicon-folder-close"/> :
+                                        </li>
+                                        <ui:repeat var="folderBreadcrumb" value="#{documentController.folderPath}">
+                                            <h:panelGroup rendered="#{folderBreadcrumb.volgnr != documentController.selectedFolder.volgnr}">
+                                                <li>
+                                                    <h:commandLink action="#{documentController.selectFolder(folderBreadcrumb)}" title="#{folderBreadcrumb.naam}">
+                                                        <h:outputText value="#{folderBreadcrumb.naam}"/>
+                                                        <f:ajax render="@form"/>
+                                                    </h:commandLink>
+                                                </li>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{folderBreadcrumb.volgnr == documentController.selectedFolder.volgnr}">
+                                                <li><h:outputText value="#{folderBreadcrumb.naam}"/></li>
+                                            </h:panelGroup>
+                                        </ui:repeat>
+                                    </ol>
+                                </div>
+                                <div class="col-md-2 foldertools float-right">
+                                    <h:panelGroup rendered="#{documentController.wijzigMode}">
+                                        <p:commandLink oncomplete="PF('dialogFolderProperties').show();">
+                                            <span class="glyphicon glyphicon-cog" title="Map gegevens"/>
+                                        </p:commandLink>
+                                        <p:commandLink oncomplete="PF('dialogFolderVerwijderen').show();">
+                                            <span class="glyphicon glyphicon-remove" title="Map verwijderen"/>
+                                        </p:commandLink>
+                                    </h:panelGroup>
+                                </div>
+                            </div>         
+                            
+                            <!-- Documenten -->
+                            <p:dataTable var="bestand" value="#{documentController.ophalenSubFiles(documentController.selectedFolder.volgnr)}">
+                                <p:column style="width:50px;" sortBy="#{bestand.type}">
+                                    <h:graphicImage alt="#{bestand.omschrijving}" title="#{bestand.omschrijving}" styleClass="folder" library="images/filesystem" name="#{documentController.getFileTypeImage(bestand.type)}"/>
+                                    <h:graphicImage alt="Gepubliceerd" title="Gepubliceerd" styleClass="bestandpublished" library="images" name="published.png" rendered="#{documentController.wijzigMode and bestand.gepubliceerd}"/>
+                                </p:column>
+
+                                <p:column headerText="Naam" sortBy="#{bestand.naam}">
+                                    <h:commandLink title="Download" value="#{bestand.naam}" styleClass="bestandnaam">
+                                        <p:fileDownload value="#{documentController.handleFileDownload(bestand)}"/> 
+                                    </h:commandLink>
+                                    <br/>
+                                    <h:outputLabel styleClass="bestandomschrijving" value="#{bestand.omschrijving}"/>
+                                </p:column>
+
+                                <p:column headerText="Datum" sortBy="#{bestand.datumAangemaakt}" rendered="#{documentController.wijzigMode}">
+                                    <h:outputText value="#{bestand.datumAangemaakt}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy hh:mm" timeZone="#{homePlateSessionTO.timezone}" />
+                                    </h:outputText>
+                                </p:column>
+
+                                <p:column headerText="Gebruiker" sortBy="#{bestand.gbrVolgnr.displayNaam}" rendered="#{documentController.wijzigMode}">
+                                    #{bestand.gbrVolgnr.displayNaam}
+                                </p:column>
+
+                                <p:column headerText="" rendered="#{documentController.wijzigMode}">
+                                    <p:commandLink update="@form" oncomplete="PF('dialogBestandProperties').show();">
+                                        <span class="glyphicon glyphicon-cog" title="Bestand gegevens"/>
+                                        <f:setPropertyActionListener value="#{bestand}" target="#{documentController.selectedBestand}" />
+                                    </p:commandLink>
+                                    <p:commandLink update="@form" oncomplete="PF('dialogBestandVerwijderen').show();">
+                                        <span class="glyphicon glyphicon-remove" title="Bestand verwijderen"/>
+                                        <f:setPropertyActionListener value="#{bestand}" target="#{documentController.selectedBestand}" />
+                                    </p:commandLink>
+                                </p:column>
+                                
+                            </p:dataTable>
+                            
+                        </div>
+                    </div><!-- /row -->
+
+                </div>
+                <div class="ui-helper-reset" style="clear:both;"/>
+                <br/><br/>
+            </h:form>
+
+        </h:panelGroup>
+        <h:panelGroup rendered="#{empty securityController.gebruiker}">
+            <br/>
+            <info:taalkeuze nl="Voor deze pagina moet u ingelogd zijn." en="For this page you need to login" />
+            <h:link outcome="/pages/homeplate.xhtml"> <info:taalkeuze nl="Terug naar de startpagina" en="Back to the startpage."/></h:link>
+            <br/>
+            <br/>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{not empty securityController.gebruiker and !documentController.magDocumentenZien()}">
+            <info:taalkeuze nl="U heeft nog geen rechten om de documenten te bekijken. Voor vragen neem contact op met webmaster@robur58.com." en="You don't have permission to view the documents. For questions contact webmaster@robur58.com." />
+        </h:panelGroup>
+                                                            
+        <!--<h:outputScript library="js" name="documenten.js" target="body" />-->
+
+        <h:panelGroup id="dialogen">
+            <p:dialog header="Nieuwe Map" widgetVar="dialogNieuweMap" modal="true" width="600" height="300" rendered="#{documentController.wijzigMode}">  
+                <h:form id="nieuweMap">
+                    <ui:include src="/pages/dialog/nieuwemap.xhtml"/>
+                </h:form>
+            </p:dialog>
+
+            <p:dialog header="Bestand gegevens" widgetVar="dialogBestandProperties" modal="true" width="600" height="400" rendered="#{documentController.wijzigMode}">
+                <h:form id="bestandproperties">
+                    <ui:include src="/pages/dialog/bestandproperties.xhtml"/>
+                </h:form>
+            </p:dialog>
+
+            <p:dialog header="Bestand verwijderen" widgetVar="dialogBestandVerwijderen" modal="true" width="600" height="400" rendered="#{documentController.wijzigMode}">
+                <h:form id="bestandverwijderen">
+                    <ui:include src="/pages/dialog/bestanddelete.xhtml"/>
+                </h:form>
+            </p:dialog>
+
+            <p:dialog header="Map gegevens" widgetVar="dialogFolderProperties" modal="true" width="600" height="400" rendered="#{documentController.wijzigMode}">
+                <h:form id="folderproperties">
+                    <ui:include src="/pages/dialog/folderproperties.xhtml"/>
+                </h:form>
+            </p:dialog>
+
+            <p:dialog header="Map verwijderen" widgetVar="dialogFolderVerwijderen" modal="true" width="600" height="400" rendered="#{documentController.wijzigMode}">
+                <h:form id="folderverwijderen">
+                    <ui:include src="/pages/dialog/folderdelete.xhtml"/>
+                </h:form>
+            </p:dialog>
+        </h:panelGroup>        
+    </ui:define>
+
+</ui:composition>

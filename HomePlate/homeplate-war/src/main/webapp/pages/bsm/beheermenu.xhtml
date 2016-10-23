@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <div id="headernav">
+        <h:form id="beheermenuForm">
+            <ul>
+                <li id="#{navigatieController.getBeheerTabbladId(1)}">
+                    <h:link outcome="#{navigatieController.executeNavigatie(1)}"><span>HomePlate</span></h:link>
+                </li>                
+                <li id="#{navigatieController.getBeheerTabbladId(2)}">
+                    <h:link outcome="/pages/bsm/gebruikerinstellingen.xhtml"><span>Gebruiker instellingen</span></h:link>
+                </li>
+                <!--h:panelGroup rendered="#{documentController.magDocumentenZien}">
+                    <li id="#{navigatieController.getBeheerTabbladId(3)}">
+                        <h:link outcome="/pages/bsm/documenten.xhtml"><span>Documenten</span></h:link>
+                    </li>
+                </h:panelGroup -->
+            </ul>
+        </h:form>
+        <div class="mijntitel">Mijn HomePlate</div>
+    </div>
+
+ </ui:composition>

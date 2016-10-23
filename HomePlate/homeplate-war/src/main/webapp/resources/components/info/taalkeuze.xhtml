@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      >
+    <!-- INTERFACE -->
+    <composite:interface>
+        <composite:attribute name="nl" required="true" />
+        <composite:attribute name="en" required="true" />
+        <composite:attribute name="escape" required="false" default="true" />
+        <composite:attribute name="styleClass" required="false" />
+    </composite:interface>
+
+    <!-- IMPLEMENTATION -->
+    <composite:implementation>
+        <h:outputText value="#{cc.attrs.nl}" rendered="#{homepageController.homePlateSessionTO.dutch and empty cc.attrs.styleClass}" escape="#{cc.attrs.escape}" />
+        <h:outputText value="#{cc.attrs.en}" rendered="#{not homepageController.homePlateSessionTO.dutch and empty cc.attrs.styleClass}" escape="#{cc.attrs.escape}"/>
+        <h:outputText value="#{cc.attrs.nl}" rendered="#{homepageController.homePlateSessionTO.dutch and not empty cc.attrs.styleClass}" styleClass="#{cc.attrs.styleClass}" escape="#{cc.attrs.escape}"/>
+        <h:outputText value="#{cc.attrs.en}" rendered="#{not homepageController.homePlateSessionTO.dutch and not empty cc.attrs.styleClass}" styleClass="#{cc.attrs.styleClass}" escape="#{cc.attrs.escape}"/>
+    </composite:implementation>
+</html>

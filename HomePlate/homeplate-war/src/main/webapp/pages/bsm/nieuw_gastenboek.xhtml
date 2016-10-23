@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/bsm/bsmmain.xhtml"
+      >
+
+    <ui:define name="content">
+        <h:form id="gastenboekForm">
+            <div class="info">
+                <div class="title"><info:taalkeuze nl="Teken Gastenboek" en="Sign Guestbook"/></div>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th><info:taalkeuze nl="Naam" en="Name"/></th>
+                            <td><h:inputText required="true" size="50" maxlength="50" styleClass="normal required" value="#{gastenboekController.naam}"/></td>
+                        </tr>
+                        <tr>
+                            <th><info:taalkeuze nl="E-Mail" en="E-Mail"/></th>
+                            <td><h:inputText styleClass="normal" size="50" maxlength="50" value="#{gastenboekController.email}"/></td>
+                        </tr>
+                        <tr>
+                            <th><info:taalkeuze nl="Homepage Naam" en="Homepage Name"/></th>
+                            <td><h:inputText styleClass="normal" size="50" maxlength="50" value="#{gastenboekController.homepageNaam}"/></td>
+                        </tr>
+                        <tr>
+                            <th><info:taalkeuze nl="Homepage URL" en="Homepage URL"/></th>
+                            <td><h:inputText styleClass="normal" size="50" maxlength="100" value="#{gastenboekController.homepageURL}"/></td>
+                        </tr>
+                        <tr>
+                            <th><info:taalkeuze nl="Opmerking" en="Remark"/></th>
+                            <td><h:inputTextarea required="true" rows="8" cols="50" styleClass="normal required" value="#{gastenboekController.opmerking}"/></td>
+                        </tr>
+                    </table>
+
+                    <h:commandButton type="submit" styleClass="homeplateButton" action="#{gastenboekController.executeBewaarNieuw}" value="Vastleggen" rendered="#{homePlateSessionTO.dutch}"/>
+                    <h:commandButton type="submit" styleClass="homeplateButton" action="#{gastenboekController.executeBewaarNieuw}" value="Submit" rendered="#{not homePlateSessionTO.dutch}"/>
+                    <h:commandButton action="gastenboek.xhtml" styleClass="homeplateButton" value="Annuleren" immediate="true" rendered="#{homePlateSessionTO.dutch}"/>
+                    <h:commandButton action="gastenboek.xhtml" styleClass="homeplateButton" value="Cancel" immediate="true" rendered="#{not homePlateSessionTO.dutch}"/>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

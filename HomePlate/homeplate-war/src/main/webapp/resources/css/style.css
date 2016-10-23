@@ -1,0 +1,302 @@
+.navbar {
+  background: none !important; 
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    background-color: grey !important;
+    color: #FFFFFF !important;
+    background-image: none !important;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.active .caret {
+    color: #FFFFFF !important;
+}
+.wedstrijden {
+    /*background-color: red;*/
+    font-size: medium !important;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding: 5px;
+    text-shadow: 4px 4px #CC0000;
+    background-image: url('../resources/images/gras.jpg');
+}
+.wedstrijddatum {
+    font-size: x-large;
+}
+.wedstrijdsoort {
+    font-size: x-large;
+    font-weight: bold;
+}
+.wedstrijden .glyphicon {
+    color: #FFFFFF !important;
+    font-size: 18px;
+}
+body {
+    /*background-image: url('../resources/images/gras.jpg');*/
+}
+.container {
+    background-color: #FFFFFF;
+    background-image: none;
+}
+.dropdown-menu-full {
+    min-width: 700px !important;
+    padding-left: 5px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    min-height: 420px;
+}
+.submenuitems {
+    min-height: 50px !important;
+    max-width: 240px;
+}
+.infodatum {
+    background-color: gray;
+    color: white;
+    border-radius: 8px;
+    padding: 5px;
+    width: 66px;
+    font-weight: bold;
+    margin-right: 12px;
+    font-family: monospace;    
+}
+.infodag {
+    font-size: xx-large;
+    text-align: center;
+}
+.infomaand {
+    font-size: medium;
+    text-align: center;
+}
+.infojaar {
+    font-size: small;
+    text-align: center;
+}
+.infotitel {
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+.footer {
+    background-color: grey;
+    color: white;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+.stButton {
+    color: #000000;
+    cursor: pointer;
+    font-size: 11px;
+    line-height: 16px;
+    text-decoration: none;
+}
+.stButton .stLarge {
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+}
+.stButton .stLarge:hover {
+	opacity: 0.75;
+}
+.st_facebook_large span.stLarge {
+    background-image: url('../resources/images/facebook_32.png');
+}
+.st_twitter_large span.stLarge {
+    background-image: url('../resources/images/twitter_32.png');
+}
+#kalenderWidget .date {
+    font-size: medium;
+    color: #000000;
+}
+#kalenderWidget label {
+    color: gray;
+}
+.infotitle {
+    font-size: x-large;
+    color: green;
+    text-transform: uppercase;
+    border: 3px solid green;
+    border-radius: 8px;
+    margin-top: 15px;
+    padding: 2px;
+    padding-left: 10px;
+}
+.submenuv2 {
+    font-size: 14px;
+}
+.dropdown-menu > li > a {
+    color: grey !important;
+}
+#infohoofdmenu ul ul {
+    min-height: 20px;
+    padding-bottom: 8px;
+    -moz-columns: 3 180px;
+    -webkit-columns: 3 180px;
+    columns: 3 180px;
+    list-style-type: none;
+}
+#infohoofdmenu li {
+    list-style-type: none;
+}
+#infohoofdmenu .folder {
+    font-weight: bold;
+    font-size: 16px;
+    color: grey;
+}
+#infohoofdmenu ul ul li {
+    list-style-type: none;
+}
+#infohoofdmenu ul ul li span {
+    margin-right: 10px;
+    color: grey;
+}
+#infositemap ul ul {
+    min-height: 20px;
+    padding-bottom: 8px;
+    -moz-columns: 3 180px;
+    -webkit-columns: 3 180px;
+    columns: 3 180px;
+    list-style-type: none;
+}
+#infositemap li {
+    list-style-type: none;
+}
+#infositemap .folder {
+    font-weight: bold;
+    font-size: 16px;
+}
+#infositemap ul ul li span {
+    margin-right: 10px;
+}
+#infositemap a:visited, #infositemap a, #infositemap a:hover {
+    color: #FFFFFF;
+}
+.naarboven {
+    color: #FFFFFF;
+    font-size: x-large;
+}
+.glyphicon.glyphicon-chevron-up.naarbovenlink {
+    color: #FFFFFF;
+    cursor: pointer;
+}
+/*.infoitem {
+    background-color: #FFFFFF;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 0px solid #000000;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 15px;
+    -webkit-box-shadow: 7px 10px 7px 0px rgba(0,0,0,0.6);
+    -moz-box-shadow: 7px 10px 7px 0px rgba(0,0,0,0.6);
+    box-shadow: 7px 10px 7px 0px rgba(0,0,0,0.6);
+}*/
+.infoitem img {
+    max-width: 500px !important;
+}
+.highlightarrow {
+    vertical-align: top;
+}
+
+a {
+    color: gray;
+}
+.header {
+    font-weight: bold;
+}
+.websitetitel {
+    border-bottom: none !important;
+}
+.inlogform {
+    min-width: 250px !important;
+    padding-left: 15px !important;
+}
+.gebruiker {
+    margin-left: 10px;
+}
+.instellingen, .uitloggen {
+    margin-right: 10px;
+}
+.folders {
+    font-size: large;
+    line-height: 1.5;
+}
+.folders .glyphicon {
+    font-size: x-large;
+}
+.folders a {
+    margin-right: 10px;
+}
+.mijndocumenten li {
+    list-style: none outside none;
+}
+.mijndocumenten .toonfolderfalse {
+    display: none !important;
+}
+.mijndocumenten .breadcrumb {
+    background-color: #FFFFFF !important;
+    padding: 0px 15px !important;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: none !important;
+    background-color: grey !important;
+    color: #FFFFFF !important;
+    text-shadow: none !important;
+}
+.breadcrumb {
+    font-size: large;
+    color: grey !important;
+}
+.foldertools {
+    font-size: large;
+    position: relative;
+    top: 10px;
+    left: 5px;
+}
+.currentjaar {
+    font-weight: bold;
+}
+.secondarybutton {
+    margin-left: 5px;
+}
+.annuleerbuttonfalse {
+    display: none !important;
+}
+#sponsorWidget .carousel-inner {
+     max-width: 100%;
+     height: 100px;
+     vertical-align: middle;
+     text-align: center;
+}
+#sponsorWidget img {
+    max-height: 100px;
+}
+.popover {
+    color: #000;
+    text-shadow: none;
+}
+.wedstrijdextrainfo {
+    color: #FFFFFF;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    left: -20px;
+    top: -5px;
+}
+.wedstrijdinfo {
+    color: #FFFFFF;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    top: -30px;
+    left: 30px;
+}

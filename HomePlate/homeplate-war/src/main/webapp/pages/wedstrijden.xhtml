@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                xmlns:wedstrijd="http://java.sun.com/jsf/composite/components/wedstrijd"
+                template="/templates/main.xhtml"
+                >
+
+    <f:metadata>        
+        <f:event type="preRenderView" listener="#{wedstrijdenController.ophalenWedstrijden(param.team)}">
+        </f:event>
+    </f:metadata>
+
+    <ui:define name="content">
+        <div>
+            <h2>
+                <h2><h:outputText value="#{wedstrijdenController.titel}"/></h2>
+            </h2>
+            <p>
+                <table>
+                    <tr align='LEFT'>
+                        <th width='20%'><info:taalkeuze nl="Datum" en="Date" /></th>
+                        <th width='6%'><info:taalkeuze nl="Tijd" en="Time" /></th>
+                        <th width='5%'></th>
+                        <th><info:taalkeuze nl="Veld" en="Field"/></th>
+                        <th width='15%'>Nr</th>
+                        <th width='54%'><info:taalkeuze nl="Wedstrijd" en="Game"/></th>
+                        <th></th>
+                    </tr>
+                    <ui:repeat var="wedstrijd" value="#{wedstrijdenController.teamWedstrijden}">
+                        <tr>
+                            <td valign="TOP">
+                                <h:outputText value="#{wedstrijd.datum}" rendered="#{homePlateSessionTO.dutch}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy EEE" locale="NL_nl" timeZone="#{homePlateSessionTO.timezone}" />
+                                </h:outputText>
+                                <h:outputText value="#{wedstrijd.datum}" rendered="#{not homePlateSessionTO.dutch}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy EEE" timeZone="#{homePlateSessionTO.timezone}" />
+                                </h:outputText>
+                            </td>
+                            <td valign="TOP">
+                                <h:panelGroup rendered="#{not empty wedstrijd.afgelast and wedstrijd.afgelast == 'J'}">
+                                    <del>
+                                        <h:outputText value="#{wedstrijd.tijdstip}"/>
+                                    </del>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{empty wedstrijd.afgelast or wedstrijd.afgelast != 'J'}">
+                                    <h:outputText value="#{wedstrijd.tijdstip}"/>
+                                </h:panelGroup>
+                            </td>
+                            <td valign="TOP">
+                                <h:panelGroup rendered="#{wedstrijd.afgelast == 'G'}">
+                                    <h:link title="Gewijzigd!">
+                                        <span class="glyphicon glyphicon-exclamation-sign gewijzigd-icon"></span>
+                                    </h:link>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{wedstrijd.afgelast == 'J'}">
+                                    <h:link title="Afgelast!">
+                                        <span class="glyphicon glyphicon-remove-sign afgelast-icon"></span>
+                                    </h:link>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{wedstrijd.afgelast == 'D'}">
+                                    <h:link title="Definitief!">
+                                        <span class="glyphicon glyphicon-ok-sign definitief-icon"></span>
+                                    </h:link>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{wedstrijd.afgelast == 'V'}">
+                                    <h:link title="Voorlopig!">
+                                        <span class="glyphicon question-sign voorlopig-icon"></span>
+                                    </h:link>
+                                </h:panelGroup>
+                            </td>
+                            <td valign="TOP">
+                                <h:outputText value="#{wedstrijd.veldInfo.omschrijving}" rendered="#{not empty wedstrijd.veldInfo}"/>
+                            </td>
+                            <td valign="TOP">
+                                <h:outputText value="#{wedstrijd.wedstrijdNummer}"/>
+                            </td>
+                            <td valign="TOP">
+                                <h:outputText value="#{wedstrijd.displayTeamThuis}" />
+                                -
+                                <h:outputText value="#{wedstrijd.displayTeamUit}" />
+                            </td>
+                            <td height="24" valign="TOP">
+                                <h:link title="#{wedstrijd.displayInfo}" rendered="#{not empty wedstrijd.displayInfo}">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                </h:link>
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                </table>
+            </p>
+        </div>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,323 @@
+/* 
+    Document   : homeplate.css
+    Created on : 15-jan-2011, 15:00:36
+    Author     : Gebruiker
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+/*
+ * Show image placeholders
+@-moz-document url-prefix(http), url-prefix(file) {
+  img:-moz-broken{
+    -moz-force-broken-image-icon:1;
+    width:24px;
+    height:24px;
+  }
+}
+*/
+
+body {
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    background-image: url('../resources/images/gras.jpg');
+    background-attachment:fixed;
+}
+
+nav {
+/* De menu altijd op een vaste positie t.o.v. browser window. */
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 30px;
+    z-index: 3; /* Menu zichtbaar maken nadat het opgebouwd is. */
+    display: none;
+}
+
+/* Render HTML5 elementen als block elementen. */
+header, nav, aside, section, footer {
+    display: block;
+}
+
+header {
+    position: fixed;
+    top: -5px;
+    left: -10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 110%;
+    height: 110px;
+    background: rgba(32, 32, 32, 1);
+    z-index: 9999;
+    box-shadow: 1px 3px 30px rgba(0, 0, 0, 1) inset;
+    -moz-box-shadow: 1px 3px 30px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 1px 3px 30px rgba(0, 0, 0, 1);
+}
+
+#footer {
+    position: relative;
+    top: 200px;
+    left: -10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    width: 110%;
+    height: 110px;
+    background: rgba(32, 32, 32, 1);
+    z-index: 9999;
+    box-shadow: 1px 3px 30px rgba(0, 0, 0, 1) inset;
+    -moz-box-shadow: 1px 3px 30px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 1px 3px 30px rgba(0, 0, 0, 1);
+}
+.footer {
+    position: relative;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    width: 100%;
+}
+
+.nieuwlid {
+    background-image: url('../resources/images/lidworden.png');
+    width: 402px;
+    height: 361px;
+}
+
+.transparant {
+     background-color: transparent;
+}
+header .logo {
+    background-image: url('../resources/images/header/RoburHeader0.gif');
+    width: 950px;
+    height: 95px;
+    left: -4%;
+    margin-left: auto;
+    margin-right: auto;
+    /* top: -86px; */
+    position: relative;
+}
+header .roburlogo {
+    background-image: url('../resources/images/rob_logo.gif');
+    left: 15px;
+    top: 10px;
+    width: 100px;
+    height: 97px;
+    position: relative;
+}
+
+#content {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+
+    top: 200px;
+    width: 60%;
+    height: 70%;
+
+    min-width: 50%;
+    background: rgba(32, 32, 32, 0.7);
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    
+    box-shadow: 1px 3px 30px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 1px 3px 30px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 1px 3px 30px rgba(0, 0, 0, 1);
+}
+
+#page {
+    width: 80%;
+    float: none;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: white;
+}
+
+nav .tabbladen {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+
+    top: -140px;
+    width: 110%;
+    left: -10px;
+   /* width: 50%; */
+    height: 60px;
+    background: rgba(255, 255, 255, 1);
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    z-index: 1;
+}
+nav .tabbladen #tabbladen {
+    margin-left: 180px;
+}
+nav .tabbladonder {
+    margin-left: auto;
+    margin-right: auto;
+
+    top: 71px;
+    width: 100%;
+    height: 30px;
+
+    background: rgba(204, 0, 0, 1);
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+nav .mainmenu {
+    position: relative;
+    left: 20px;
+    top: 210px;
+    width: 20%;
+}
+
+.info {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+    background-color: #f3fcff;
+    border: 1px solid red;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+
+    /* Gradient in browsers die het ondersteunen. */
+    background-image: -moz-linear-gradient(top, white, #f3fcff 18px);
+    background-image: -webkit-gradient(linear,0 0 ,0 18, from(#ffffff), to(#f3fcff));
+}
+
+.info .title {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+    background-color: red;
+    border: 1px solid red;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    color: white;
+    /* Gradient in browsers die het ondersteunen. */
+    background-image: -moz-linear-gradient(top, white, red 18px);
+    background-image: -webkit-gradient(linear,0 0 ,0 18, from(#ffffff), to(#f3fcff));
+}
+
+.infoside {
+    width: 25%;
+}
+
+.infocenter {
+    width: 90%;
+    margin-left: auto ;
+    margin-right: auto ;
+    position: relative;
+}
+
+/*.info img {
+    float: none;
+} */
+.kalender {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+    background-color: #f3fcff;
+    border: 1px solid red;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    /* Gradient in browsers die het ondersteunen. */
+    background-image: -moz-linear-gradient(top, white, #f3fcff 18px);
+    background-image: -webkit-gradient(linear,0 0 ,0 18, from(#ffffff), to(#f3fcff));
+}
+
+.kalender .title {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+    background-color: red;
+    border: 1px solid red;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    color: white;
+    /* Gradient in browsers die het ondersteunen. */
+    background-image: -moz-linear-gradient(top, white, red 18px);
+    background-image: -webkit-gradient(linear,0 0 ,0 18, from(#ffffff), to(#f3fcff));
+}
+
+.right {
+    float: right;
+}
+
+/* Tijdens een ajax call de spinner tonen. */
+#spinner {
+/* Per default niet tonen. */
+    display: none;
+    position: fixed;
+    top: 62px;
+    right: 1px;
+    z-index: 1;
+    padding: 5px 5px 5px 30px;
+    background-color: #ffffa0;
+    border: 3px solid #ffff68;
+    background-repeat: no-repeat;
+    background-position: 5px 50%;
+}
+.date{
+    font-weight: bold;
+}
+
+.uk {
+    background-image: url('../resources/images/flag_uk.gif');
+    border: 0px;
+    width: 14px;
+    height: 13px;
+    position: relative;
+    top: 8px;
+}
+.wedstrijddatum {
+    font-weight: bold;
+    font-size: larger;
+}
+.wedstrijdsoort {
+    font-weight: bold;
+    font-size: large;
+}
+.info .content { overflow: hidden }
+.test1 { color: rgba(0,0,255,0.5) }        /* semi-transparent solid blue */
+.test2 { color: rgba(100%, 50%, 0%, 0.1) } /* very transparent solid orange */
+.caroussel {
+    height: 110px;
+}
+.caroussel img {
+    max-height: 110px !important;
+}
+.caroussel .bx-viewport {
+    height: 110px;
+}

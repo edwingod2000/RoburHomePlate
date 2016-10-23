@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/bsm/bsmmain.xhtml"
+                >
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{homepageController.resetContext}" />
+        <f:event type="preRenderView" listener="#{navigatieController.setCurrentTabblad(3)}" />
+        <f:event type="preRenderView" listener="#{teamsController.init}" />
+        <f:event type="preRenderView" listener="#{teamsController.verwijderContextItems}" />
+    </f:metadata>
+
+    <ui:define name="content">
+        <!--h:panelGroup rendered="#{not homePlateSessionTO.showContextTeamList}">
+            <table class="teamlijst"><tr><td>&nbsp;</td><td></td></tr></table>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{homePlateSessionTO.showContextTeamList}" -->
+        <h:form>
+            <ui:repeat var="typeTeam" value="#{teamsController.typeTeams}">
+                <div class="info">
+                    <div class="title">
+                        <info:taalkeuze nl="#{typeTeam.omschrijving} wedstrijden" en="#{typeTeam.omschrijvingEn} games"/>
+                    </div>
+                    <div class="content">
+                        <ui:repeat var="team" value="#{teamsController.ophalenTeamsPerSoort(typeTeam.code)}">
+                            <h:link outcome="/pages/bsm/wedstrijden.xhtml?team=#{team.volgnr}">
+                                <h:outputText value="#{team.naam}"/>
+                            </h:link>
+                            <br/>
+                        </ui:repeat>
+                        <h:link outcome="/pages/bsm/wedstrijden.xhtml?team=#{typeTeam.code}">
+                            <info:taalkeuze nl="Alle wedstrijden" en="All games"/>
+                        </h:link>
+                    </div>
+                </div>
+            </ui:repeat>
+            <div class="info">
+                <div class="title"><info:taalkeuze nl="Totaal" en="Total"/></div>
+                <div class="content">
+                    <h:link outcome="/pages/bsm/wedstrijden.xhtml?team=ALL">
+                        <info:taalkeuze nl="Alle Honkbal- en Softbal wedstrijden" en="All Base- and Softball games"/>
+                    </h:link>
+                </div>
+            </div>
+        </h:form>
+        <!--/h:panelGroup -->
+    </ui:define>
+</ui:composition>

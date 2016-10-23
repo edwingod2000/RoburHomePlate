@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                template="/templates/main.xhtml"
+      >
+
+    <ui:define name="content">
+        <h:form id="gastenboekForm" role="form">
+            <div>
+                <div><h2><info:taalkeuze nl="Teken Gastenboek" en="Sign Guestbook"/></h2></div>
+                <p>
+                    <div class="form-group">
+                        <label for="gastenboekNaam"><info:taalkeuze nl="Naam" en="Name"/></label>
+                        <h:inputText id="gastenboekNaam" required="true" size="50" maxlength="50" styleClass="form-control required" value="#{gastenboekController.naam}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="gastenboekEmail"><info:taalkeuze nl="E-Mail" en="E-Mail"/></label>
+                        <h:inputText id="gastenboekEmail" styleClass="form-control" size="50" maxlength="50" value="#{gastenboekController.email}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="gastenboekHomepage"><info:taalkeuze nl="Homepage Naam" en="Homepage Name"/></label>
+                        <h:inputText id="gastenboekHomepagenaam" styleClass="form-control" size="50" maxlength="50" value="#{gastenboekController.homepageNaam}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="gastenboekHomepageURL"><info:taalkeuze nl="Homepage URL" en="Homepage URL"/></label>
+                        <h:inputText id="gastenboekHomepageURL" styleClass="form-control" size="50" maxlength="100" value="#{gastenboekController.homepageURL}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="gastenboekOpmerking"><info:taalkeuze nl="Opmerking" en="Remark"/></label>
+                        <h:inputTextarea id="gastenboekOpmerking" required="true" rows="8" cols="50" styleClass="form-control required" value="#{gastenboekController.opmerking}"/>
+                    </div>
+                    <h:commandButton type="submit" styleClass="btn btn-primary" action="#{gastenboekController.executeBewaarNieuw}" value="Vastleggen" rendered="#{homePlateSessionTO.dutch}"></h:commandButton>
+                    <h:commandButton type="submit" styleClass="btn btn-primary" action="#{gastenboekController.executeBewaarNieuw}" value="Submit" rendered="#{not homePlateSessionTO.dutch}"></h:commandButton>
+                    <h:commandButton action="gastenboek.xhtml" styleClass="btn btn-default secondarybutton" value="Annuleren" immediate="true" rendered="#{homePlateSessionTO.dutch}"></h:commandButton>
+                    <h:commandButton action="gastenboek.xhtml" styleClass="btn btn-default secondarybutton" value="Cancel" immediate="true" rendered="#{not homePlateSessionTO.dutch}"></h:commandButton>
+                </p>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

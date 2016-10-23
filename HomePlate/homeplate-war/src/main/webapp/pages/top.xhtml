@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:info="http://java.sun.com/jsf/composite/components/info"
+                >
+
+    <h:form id="topForm">
+        <h:panelGroup styleClass="row" rendered="#{homePlateSessionTO.dutch}">
+            <div class="col-md-5 col-xs-5">
+                <a target="_NEW" href="http://homeplate.robur58.com/pls/bsm/bsm_pck_autorisatie.inlogscherm?p_taal=NL">Beheer</a>
+            </div>
+            <div class="col-md-4 col-xs-4">
+                <h:link outcome="/pages/infopagina.faces?typeInfo=72">Contact</h:link>
+            </div>
+            <div class="col-md-3 col-xs-3">
+                <h:commandLink action="#{homePlateSessionTO.switchLanguageV2}"><h:graphicImage library="images" alt="Switch to English" title="Switch to English" name="flag_uk.gif" style="border: none"/></h:commandLink>
+            </div>
+        </h:panelGroup>
+        <h:panelGroup styleClass="row" rendered="#{not homePlateSessionTO.dutch}">
+            <div class="col-md-5 col-xs-5">
+                <a target="_NEW" href="http://homeplate.robur58.com/pls/bsm/bsm_pck_autorisatie.inlogscherm?p_taal=NL">Administration</a>
+            </div>
+            <div class="col-md-4 col-xs-4">
+                <h:link outcome="/pages/bsm/infopagina.faces?typeInfo=72">Contact</h:link>
+            </div>
+            <div class="col-md-3 col-xs-3">
+                <h:commandLink action="#{homePlateSessionTO.switchLanguageV2}"><h:graphicImage library="images" alt="Kies Nederlands" title="Kies Nederlands" name="flag_nl.gif" style="border: none"/></h:commandLink>
+            </div>
+        </h:panelGroup>
+    </h:form>
+
+</ui:composition>
